@@ -16,7 +16,7 @@ public class GameBoard {
                 case 'j': this.fields[i] = new Jail(name[i],i);
                 case 'v': this.fields[i] = new VisitJail(name[i],i);
                 case 's': this.fields[i] = new Start(name[i],i);
-                case 'g': this.fields[i] = new GratisParkering(name[i],i);
+                case 'f': this.fields[i] = new FreeParking(name[i],i);
             }
         }
 
