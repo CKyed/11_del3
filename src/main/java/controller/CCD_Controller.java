@@ -1,4 +1,6 @@
-package model;
+package controller;
+
+import model.ChanceCardDeck;
 
 public class CCD_Controller {
     private ChanceCardDeck chanceCardDeck;
