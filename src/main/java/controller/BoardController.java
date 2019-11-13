@@ -11,12 +11,12 @@ public class BoardController {
 
     private char[] types = {'s','p','p','c','p','p','v','p','p','c','p','p','f','p','p','c','p','p','j','p','p','c','p','p'};
     private int[] price = {0,1,1,0,1,1,0,2,2,0,2,2,0,3,3,0,3,3,0,4,4,0,5,5};
-    private String[] colors = {"WHITE","BROWN","BROWN","CHANCE","CYAN","CYAN","PRISON","MAGENTA","MAGENTA","CHANCE",
-            "ORANGE","ORANGE","PARKING","RED","RED","CHANCE","YELLOW","YELLOW","PRISON","GREEN","GREEN","CHANCE","BLUE","BLUE"};
+    private String[] colors = {"WHITE","BROWN","BROWN","WHITE","CYAN","CYAN","WHITE","MAGENTA","MAGENTA","WHITE",
+            "ORANGE","ORANGE","WHITE","RED","RED","WHITE","YELLOW","YELLOW","WHITE","GREEN","GREEN","WHITE","BLUE","BLUE"};
 
 
     public BoardController(){
-        this.gameBoard=new GameBoard(names,types,price,colors);
+        this.gameBoard=new GameBoard(this.names,this.types,this.price,this.colors);
     }
 
 

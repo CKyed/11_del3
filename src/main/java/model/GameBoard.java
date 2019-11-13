@@ -8,6 +8,7 @@ public class GameBoard {
 
     public GameBoard(String[] names, char[] types, int[] prices, String[] colors){
         int numberOfFields = names.length;
+        this.fields = new Field[numberOfFields];
 
         for (int i=0;i<numberOfFields;i++){
             switch (types[i]){
@@ -29,7 +30,7 @@ public class GameBoard {
     }
 
     public Field[] getFields() {
-        return fields;
+        return this.fields;
     }
 
 

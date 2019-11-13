@@ -6,8 +6,6 @@ public class SystemController {
 
     public SystemController(){
         this.gameController = new GameController();
-
-
         this.viewController = new ViewController(gameController.getBoardController().getNames()
                 ,gameController.getBoardController().getColors()
                 ,gameController.getBoardController().getPrice()

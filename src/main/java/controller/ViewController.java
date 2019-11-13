@@ -1,7 +1,5 @@
 package controller;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
+import gui_fields.*;
 import gui_main.GUI;
 
 import javax.swing.text.View;
@@ -17,31 +15,39 @@ public class ViewController {
 
     public ViewController(String[] names, String[] colorNames, int[] prices, char[] types){
         GUI_Field[] fields = new GUI_Field[names.length];
-        Color newColor=Color.BLACK;
+        Color newColor=Color.WHITE;
         for (int i=0;i<names.length;i++){
             switch (types[i]){
                 case 'p':
                     fields[i] = new GUI_Street();
                     fields[i].setSubText("M"+prices[i]);
+                    break;
+                case 's':
+                    fields[i] = new GUI_Start();
+                    break;
+                case 'c':
+                    fields[i] = new GUI_Chance();
+                    break;
+                case 'j':
+                    fields[i] = new GUI_Jail();
+                    break;
+                case 'v':
+                    fields[i] = new GUI_Jail();    //SKal ændres til besøg i fængsel
+                    break;
+                case 'f':
+                    fields[i] = new GUI_Refuge();
+                    break;
+            }
+            for (int j=0; j<this.colors.length;j++){
+                if (colorNames[i].equals(this.colorNames[j])){
+                    newColor = this.colors[j];
+                }
             }
 
-
-
-            if (colorNames[i].equals("WHITE")){
-                newColor = colors[i];
-            } else if (colorNames[i].equals("CYAN")){
-                newColor = colors[i];
-            }
             fields[i].setBackGroundColor(newColor);
             fields[i].setTitle(names[i]);
-
-
-
-
-
-
         }
-
+        this.gui = new GUI(fields,Color.WHITE);
     }
 
 
