@@ -35,7 +35,10 @@ public class SystemController {
         //Makes array of playerID's of players on oldField
         ArrayList<Integer> playersOnOldFieldId = new ArrayList<Integer>();
         for (int i=0;i<numberOfPlayers;i++){
-            playersOnOldFieldId.add(i);
+            if (gameController.getPlayerController().getPlayerFieldId(i)==oldFieldId){
+                playersOnOldFieldId.add(i);
+            }
+
         }
 
         //Updates the players current fieldID
