@@ -7,11 +7,13 @@ import java.awt.*;
 
 public class ViewController {
     private GUI gui;
+    private GUI_Field[] guiFields;
     private GUI_Player[] guiPlayers;
     private GUI_Car[] guiCars = {new GUI_Car(Color.BLUE, Color.BLUE, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
             new GUI_Car(Color.RED, Color.RED, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
             new GUI_Car(Color.GREEN, Color.GREEN, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
             new GUI_Car(Color.YELLOW, Color.YELLOW, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL)};
+
 
 
 
@@ -68,6 +70,7 @@ public class ViewController {
             fields[i].setBackGroundColor(newColor);
             fields[i].setTitle(names[i]);
         }
+        this.guiFields = fields;
         this.gui = new GUI(fields,Color.WHITE);
     }
 
@@ -83,13 +86,21 @@ public class ViewController {
         return playerNames;
     }
 
-    public void setupGuiPlayers(String[] names, int[] startPoint){
+    public void setupGuiPlayers(String[] names, int[] startPoint, int startFieldId){
         guiPlayers = new GUI_Player[names.length];
         for (int i=0;i<names.length;i++){
             guiPlayers[i] = new GUI_Player(names[i],startPoint[i],guiCars[i]);
             gui.addPlayer(guiPlayers[i]);
+            setPlayerOnField(startFieldId,i);
         }
 
     }
+
+    public void setPlayerOnField(int fieldId, int playerId){
+        this.guiFields[fieldId].setCar(guiPlayers[playerId],true);
+
+    }
+
+
 
 }

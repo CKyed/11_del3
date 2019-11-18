@@ -3,10 +3,13 @@ package model;
 public class Player {
     private Account account = new Account(0); //Opretter ny spiller. Spillerens start værdi varierer efter hvor mange spiller der er i spillet
     private String name;
+    private int currentFieldId;
+
 
     public Player(String name, int pointStart){
         this.account.setBalance(pointStart);
         this.name = name;
+        this.currentFieldId=0;
     }
 
     public String getName() {
@@ -21,5 +24,12 @@ public class Player {
          return this.account.getBalance();
     }
 
+    public int getCurrentFieldId() {
+        return currentFieldId;
+    }
+
+    public void setCurrentFieldId(int currentFieldId){
+        this.currentFieldId=currentFieldId;
+    }
 }
 

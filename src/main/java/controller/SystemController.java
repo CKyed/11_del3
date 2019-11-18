@@ -17,19 +17,12 @@ public class SystemController {
         //Gets the player names via the viewController
         String[] playerNames = viewController.createPlayers();
 
-        //Creates the players in the logic
+        //Creates the players in the model
         gameController.setupPlayerController(playerNames);
 
         //Gets the player balances and creates the guiPlayers
         int[] playerBalances = gameController.getPlayerController().getPlayerBalances();
-        viewController.setupGuiPlayers(playerNames,playerBalances);
-
-
-
-
-
-
-
+        viewController.setupGuiPlayers(playerNames,playerBalances,0);
     }
 
 
