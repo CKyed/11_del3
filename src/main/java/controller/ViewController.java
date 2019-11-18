@@ -66,8 +66,13 @@ public class ViewController {
     }
 
     public String[] createPlayers(){
-        String[] playerNames = {"Player1","Player2","Player3","Player4"};
-        //Bare en skabelon. Den færdige funktion skal bruge GUIen til at spørge brugeren om navne på spilleren og returnere dem.
+        int playerSelection = 2;
+        playerSelection = Integer.parseInt(gui.getUserButtonPressed("Vælg antal spillere","2","3","4"));
+        String[] playerNames = new String[playerSelection];
+        for (int i=0;i<playerSelection;i++){
+            playerNames[i] = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
+
+        }
 
         return playerNames;
     }

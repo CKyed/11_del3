@@ -11,4 +11,10 @@ public class GameController {
     public BoardController getBoardController() {
         return boardController;
     }
+
+
+
+    public void createPlayers(String[] playerNames){
+
+    }
 }

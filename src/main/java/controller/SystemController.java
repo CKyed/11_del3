@@ -11,7 +11,19 @@ public class SystemController {
                 ,gameController.getBoardController().getPrices()
                 ,gameController.getBoardController().getTypes());
 
+    initialize();
     }
+    public void initialize(){
+        viewController.createPlayers();
+
+
+    }
+
+
+
+
+
+
 
 
 }
