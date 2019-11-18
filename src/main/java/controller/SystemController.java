@@ -25,6 +25,11 @@ public class SystemController {
         viewController.setupGuiPlayers(playerNames,playerBalances,0);
     }
 
+    public void movePlayerCar(int playerId, int dieRoll){
+        int newFieldId = gameController.movePlayerCar(dieRoll,playerId);
+        viewController.setPlayerOnField(newFieldId,playerId);
+    }
+
 
 
 

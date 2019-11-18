@@ -38,4 +38,16 @@ public class PlayerController {
         return playerBalances;
     }
 
+    public Player[] getPlayers(){
+        return this.players;
+    }
+
+    public int getPlayerFieldId(int playerId){
+        return this.players[playerId].getCurrentFieldId();
+    }
+
+    public void setPlayerFieldId(int playerId,int newPlayerFieldId){
+        this.players[playerId].setCurrentFieldId(newPlayerFieldId);
+    }
+
 }
