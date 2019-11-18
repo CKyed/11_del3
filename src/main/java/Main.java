@@ -4,12 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
         SystemController systemController = new SystemController();
-        //systemController.movePlayerCar(0,5);
-        systemController.movePlayerCar(0,1);
-
-        systemController.movePlayerCar(0,1);
-        systemController.movePlayerCar(0,1);
-        systemController.movePlayerCar(0,1);
+        for (int i=0;i<14;i++){
+            for (int j=0;j<4;j++){
+                systemController.movePlayerCar(j,i);
+            }
+        }
 
 
     }
