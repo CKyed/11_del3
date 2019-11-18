@@ -8,6 +8,12 @@ import java.awt.*;
 public class ViewController {
     private GUI gui;
     private GUI_Player[] guiPlayers;
+    private GUI_Car[] guiCars = {new GUI_Car(Color.BLUE, Color.BLUE, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
+            new GUI_Car(Color.RED, Color.RED, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
+            new GUI_Car(Color.GREEN, Color.GREEN, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
+            new GUI_Car(Color.YELLOW, Color.YELLOW, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL)};
+
+
 
     //This is the logic for the ViewController, that translates the models colors to awt-colors
     private Color[] colors = {Color.WHITE,Color.getHSBColor((float)0.1,(float)0.75,(float)0.60),Color.CYAN,Color.MAGENTA,Color.ORANGE,Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE};
@@ -75,6 +81,15 @@ public class ViewController {
         }
 
         return playerNames;
+    }
+
+    public void setupGuiPlayers(String[] names, int[] startPoint){
+        guiPlayers = new GUI_Player[names.length];
+        for (int i=0;i<names.length;i++){
+            guiPlayers[i] = new GUI_Player(names[i],startPoint[i],guiCars[i]);
+            gui.addPlayer(guiPlayers[i]);
+        }
+
     }
 
 }

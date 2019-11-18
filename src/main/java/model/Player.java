@@ -17,5 +17,9 @@ public class Player {
         this.name = name;
     }
 
+    public int getAccountBalance(){
+         return this.account.getBalance();
+    }
+
 }
 
