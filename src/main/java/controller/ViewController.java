@@ -35,15 +35,17 @@ public class ViewController {
             switch (types[i]){
                 case 'p': //Property
                     fields[i] = new GUI_Street();
-                    fields[i].setSubText("M"+prices[i]);
+                    fields[i].setSubText("M"+prices[i]); //SubText er under "Overskriften. Hvis ingen SubText metode vil der stå "SubText" på Boardet
                     fields[i].setDescription("Ledig");
                     break;
                 case 's': //Start
                     fields[i] = new GUI_Start();
+                    fields[i].setSubText("");
                     fields[i].setDescription("");
                     break;
                 case 'c': //ChancecardField
                     fields[i] = new GUI_Chance();
+                    fields[i].setSubText("");
                     fields[i].setDescription("");
                     break;
                 case 'j': //Jail
@@ -58,6 +60,7 @@ public class ViewController {
                     break;
                 case 'f': //FreeParking
                     fields[i] = new GUI_Refuge();
+                    fields[i].setSubText("");
                     fields[i].setDescription("");
                     break;
             }
