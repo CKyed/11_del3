@@ -104,6 +104,10 @@ public class ViewController {
 
     }
 
+    public void removeAllPlayersFromField(int fieldId){
+        this.guiFields[fieldId].removeAllCars();
+    }
+
 
 
 }

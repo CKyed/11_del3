@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 public class SystemController {
     private GameController gameController;
     private ViewController viewController;
@@ -25,9 +27,48 @@ public class SystemController {
         viewController.setupGuiPlayers(playerNames,playerBalances,0);
     }
 
-    public void movePlayerCar(int playerId, int dieRoll){
+    public void teleportPlayerCar(int playerId, int dieRoll){
+        //Gets old field id
+        int oldFieldId= gameController.getPlayerController().getPlayerFieldId(playerId);
+        int numberOfPlayers = gameController.getPlayerController().getNumberOfPlayers();
+
+        //Makes array of playerID's of players on oldField
+        ArrayList<Integer> playersOnOldFieldId = new ArrayList<Integer>();
+        for (int i=0;i<numberOfPlayers;i++){
+            playersOnOldFieldId.add(i);
+        }
+
+        //Updates the players current fieldID
         int newFieldId = gameController.movePlayerCar(dieRoll,playerId);
+
+        //Removes all players from old field
+        viewController.removeAllPlayersFromField(oldFieldId);
+
+        //Puts the remaining cars back again
+        for (int i=0;i<playersOnOldFieldId.size();i++){
+            if (playerId!=playersOnOldFieldId.get(i)){
+                viewController.setPlayerOnField(oldFieldId,playersOnOldFieldId.get(i));
+            }
+        }
+
+        //Moves the guiPlayer to the new position
         viewController.setPlayerOnField(newFieldId,playerId);
+    }
+
+    public void movePlayerCar(int playerId,int dieRoll){
+        for(int i=0;i<dieRoll;i++){
+            teleportPlayerCar(playerId,1);
+            try
+            {
+                Thread.sleep(100);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+
     }
 
 

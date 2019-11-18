@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 public class GameController {
 
     private BoardController boardController;
@@ -29,9 +31,16 @@ public class GameController {
     }
 
     public int movePlayerCar(int dieRoll, int playerId){
+        //Gets the number of fields on the board
         int numberOfFields = boardController.getGameBoard().getFields().length;
+
+
+        //Gets old fieldID and calculates the new one
         int oldFieldId = playerController.getPlayerFieldId(playerId);
         int newFieldId = (oldFieldId + dieRoll)%numberOfFields;
+
+
+        //sets player on the new field
         playerController.setPlayerFieldId(playerId,newFieldId);
 
         return newFieldId;

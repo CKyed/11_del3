@@ -24,7 +24,7 @@ public class PlayerController {
         }
 
         for (int i=0;i<numberOfPlayers;i++){
-            players[i] = new Player(playerNames[i],startPoint);
+            players[i] = new Player(playerNames[i],startPoint,i);
         }
 
     }
@@ -50,4 +50,7 @@ public class PlayerController {
         this.players[playerId].setCurrentFieldId(newPlayerFieldId);
     }
 
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
 }

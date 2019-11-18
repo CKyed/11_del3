@@ -4,9 +4,10 @@ public class Player {
     private Account account = new Account(0); //Opretter ny spiller. Spillerens start værdi varierer efter hvor mange spiller der er i spillet
     private String name;
     private int currentFieldId;
+    private int id;
 
 
-    public Player(String name, int pointStart){
+    public Player(String name, int pointStart, int id){
         this.account.setBalance(pointStart);
         this.name = name;
         this.currentFieldId=0;
@@ -30,6 +31,10 @@ public class Player {
 
     public void setCurrentFieldId(int currentFieldId){
         this.currentFieldId=currentFieldId;
+    }
+
+    public int getId() {
+        return id;
     }
 }
 
