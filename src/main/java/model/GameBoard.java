@@ -12,17 +12,17 @@ public class GameBoard {
 
         for (int i=0;i<numberOfFields;i++){
             switch (types[i]){
-                case 'p': this.fields[i] = new Property(names[i],i,colors[i],prices[i]);
+                case 'p': this.fields[i] = new Property(names[i],i,colors[i],prices[i],types[i]);
                 break;
-                case 'c': this.fields[i] = new ChanceCardField(names[i],i,colors[i]);
+                case 'c': this.fields[i] = new ChanceCardField(names[i],i,colors[i],types[i]);
                 break;
-                case 'j': this.fields[i] = new Jail(names[i],i,colors[i]);
+                case 'j': this.fields[i] = new Jail(names[i],i,colors[i],types[i]);
                 break;
-                case 'v': this.fields[i] = new VisitJail(names[i],i,colors[i]);
+                case 'v': this.fields[i] = new VisitJail(names[i],i,colors[i],types[i]);
                 break;
-                case 's': this.fields[i] = new Start(names[i],i,colors[i]);
+                case 's': this.fields[i] = new Start(names[i],i,colors[i],types[i]);
                 break;
-                case 'f': this.fields[i] = new FreeParking(names[i],i,colors[i]);
+                case 'f': this.fields[i] = new FreeParking(names[i],i,colors[i],types[i]);
                 break;
             }
         }

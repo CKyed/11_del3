@@ -1,5 +1,6 @@
 package controller;
 import model.*;
+import model.fields.Field;
 
 public class BoardController {
     private GameBoard gameBoard;
@@ -39,6 +40,10 @@ public class BoardController {
 
     public String[] getColors() {
         return colors;
+    }
+
+    public Field getCurrentField(int fieldId){
+        return getGameBoard().getFields()[fieldId];
     }
 
 }

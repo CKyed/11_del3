@@ -113,6 +113,10 @@ public class ViewController {
         guiPlayers[playerId].setBalance(newBalance);
     }
 
+    public void displayLandedOnNewField(String name, String fieldName){
+        gui.showMessage(name + " er landet på " + fieldName +".");
+    }
+
 
 
 }

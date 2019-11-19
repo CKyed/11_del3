@@ -1,21 +1,24 @@
 package controller;
+import model.*;
+import model.fields.ChanceCardField;
 
 import java.util.ArrayList;
 
 public class GameController {
+    private DiceCup diceCup;
+
     private int startBonus=2;
     private BoardController boardController;
-
-
 
     private PlayerController playerController;
 
     public GameController() {
         this.boardController = new BoardController();
+        this.diceCup = new DiceCup(1,6);
     }
 
     public BoardController getBoardController() {
-        return boardController;
+        return this.boardController;
     }
 
     public void setupPlayerController(String[] playerNames){
@@ -45,7 +48,7 @@ public class GameController {
         return newFieldId;
     }
 
-    public int getNewBalanceAfterRoll(int playerId, int oldFieldId, int dieRoll){
+    public int newBalanceAfterRoll(int playerId, int oldFieldId, int dieRoll){
         //If player passes start, adds M2 to players balance
         if (oldFieldId+dieRoll>boardController.getNames().length-1){
             this.playerController.addPointsToPlayer(playerId,startBonus);
@@ -53,6 +56,22 @@ public class GameController {
 
         return this.playerController.getPlayerBalances()[playerId];
     }
+
+    public int getRoll(){
+        //Rolls the die
+        diceCup.rollDice();
+        int roll = diceCup.getDieSum();
+        return roll;
+
+
+    }
+
+    public int getNumberOfPlayers(){
+        return playerController.getNumberOfPlayers();
+    }
+
+
+
 
 }
 
