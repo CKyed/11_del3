@@ -3,6 +3,18 @@ package controller;
 import model.*;
 
 public class PlayerController {
+    /*
+    Fileversion:
+    Classname: PlayerController
+
+    Classfunction:
+
+    Importent varibels:
+
+
+    Importent functions:
+
+     */
     private Player[] players;
     private int numberOfPlayers;
 

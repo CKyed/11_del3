@@ -3,6 +3,18 @@ package controller;
 import java.util.ArrayList;
 
 public class SystemController {
+    /*
+    Fileversion:
+    Classname: SystemController
+
+    Classfunction:
+
+    Importent varibels:
+
+
+    Importent functions:
+
+     */
     private GameController gameController;
     private ViewController viewController;
 

@@ -6,6 +6,18 @@ import javax.swing.text.View;
 import java.awt.*;
 
 public class ViewController {
+    /*
+    Fileversion:
+    Classname: ViewController
+
+    Classfunction:
+
+    Importent varibels:
+
+
+    Importent functions:
+
+     */
     private GUI gui;
     private GUI_Field[] guiFields;
     private GUI_Player[] guiPlayers;

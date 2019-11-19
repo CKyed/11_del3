@@ -2,6 +2,18 @@ package controller;
 import model.*;
 
 public class BoardController {
+    /*
+    Fileversion:
+    Classname: Boardcontroller
+
+    Classfunction: this class function as the main controller for all board rellaited functions/methods
+
+    Importent varibels:
+        Gameboard is an arrays of fields created from names, types, prices, collors
+
+    Importent functions:
+        BoardController(): Generates logical parts of the board
+     */
     private GameBoard gameBoard;
     private String[] names = {"START","BURGERBAREN","PIZZARIAET","CHANCE","SLIKBUTIKKEN","ISKIOSKEN",
             "PÅ BESØG I FÆNGSLET","MUSEET","BIBLIOTEKET","CHANCE","SKATEPARKEN","SVØMMEBASSINNET","GRATIS PARKERING",
@@ -16,6 +28,7 @@ public class BoardController {
 
 
     public BoardController(){
+
         this.gameBoard=new GameBoard(this.names,this.types,this.prices,this.colors);
     }
 

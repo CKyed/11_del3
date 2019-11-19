@@ -3,7 +3,18 @@ package controller;
 import java.util.ArrayList;
 
 public class GameController {
+    /*
+    Fileversion:
+    Classname: GameController
 
+    Classfunction:
+
+    Importent varibels:
+
+
+    Importent functions:
+
+     */
     private BoardController boardController;
 
 
