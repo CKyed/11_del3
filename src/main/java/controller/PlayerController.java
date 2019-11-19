@@ -7,7 +7,7 @@ public class PlayerController {
     Fileversion:
     Classname: PlayerController
 
-    Classfunction:
+    Classfunction: this class controll the player.
 
     Importent varibels:
 

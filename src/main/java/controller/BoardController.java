@@ -3,7 +3,7 @@ import model.*;
 
 public class BoardController {
     /*
-    Fileversion:
+    Fileversion:0.2
     Classname: Boardcontroller
 
     Classfunction: this class function as the main controller for all board rellaited functions/methods

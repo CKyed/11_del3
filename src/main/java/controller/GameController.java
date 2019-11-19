@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class GameController {
     /*
-    Fileversion:
+    Fileversion:0.2
     Classname: GameController
 
-    Classfunction:
+    Classfunction: this class controlls everything in models
 
     Importent varibels:
 

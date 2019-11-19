@@ -7,10 +7,10 @@ import java.awt.*;
 
 public class ViewController {
     /*
-    Fileversion:
+    Fileversion:0.2
     Classname: ViewController
 
-    Classfunction:
+    Classfunction: controls everything visual
 
     Importent varibels:
 

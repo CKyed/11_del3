@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class SystemController {
     /*
-    Fileversion:
+    Fileversion:0.2
     Classname: SystemController
 
-    Classfunction:
+    Classfunction: this class controll everything between models and view
 
     Importent varibels:
 
