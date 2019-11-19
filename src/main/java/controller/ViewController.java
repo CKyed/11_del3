@@ -83,6 +83,7 @@ public class ViewController {
         String[] playerNames = new String[playerSelection];
         for (int i=0;i<playerSelection;i++){
             playerNames[i] = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
+            
 
         }
 
@@ -106,6 +107,10 @@ public class ViewController {
 
     public void removeAllPlayersFromField(int fieldId){
         this.guiFields[fieldId].removeAllCars();
+    }
+
+    public void updatePlayerBalance(int playerId, int newBalance){
+        guiPlayers[playerId].setBalance(newBalance);
     }
 
 

@@ -36,5 +36,9 @@ public class Player {
     public int getId() {
         return id;
     }
+
+    public void deposit(int amount){
+        this.account.deposit(amount);
+    }
 }
 

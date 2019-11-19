@@ -54,8 +54,14 @@ public class SystemController {
             }
         }
 
+        //Updates the active players point (maybe he passed start)
+        int updatedPlayerPoints = gameController.getNewBalanceAfterRoll(playerId,oldFieldId,dieRoll);
+        viewController.updatePlayerBalance(playerId,updatedPlayerPoints);
+
         //Moves the guiPlayer to the new position
         viewController.setPlayerOnField(newFieldId,playerId);
+
+
     }
 
     public void movePlayerCar(int playerId,int dieRoll){

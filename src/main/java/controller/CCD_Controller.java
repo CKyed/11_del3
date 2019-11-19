@@ -8,6 +8,7 @@ public class CCD_Controller {
 
     public CCD_Controller(){
         this.chanceCardDeck = new ChanceCardDeck(chanceCardTexts);
+        this.chanceCardDeck.shuffle();
     }
 
 

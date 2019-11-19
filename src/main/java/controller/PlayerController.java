@@ -53,4 +53,11 @@ public class PlayerController {
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
+
+    public void addPointsToPlayer(int playerId, int amount){
+        players[playerId].deposit(amount);
+    }
+
+
+
 }

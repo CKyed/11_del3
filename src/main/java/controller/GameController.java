@@ -3,7 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 public class GameController {
-
+    private int startBonus=2;
     private BoardController boardController;
 
 
@@ -43,6 +43,15 @@ public class GameController {
         playerController.setPlayerFieldId(playerId,newFieldId);
 
         return newFieldId;
+    }
+
+    public int getNewBalanceAfterRoll(int playerId, int oldFieldId, int dieRoll){
+        //If player passes start, adds M2 to players balance
+        if (oldFieldId+dieRoll>boardController.getNames().length-1){
+            this.playerController.addPointsToPlayer(playerId,startBonus);
+        }
+
+        return this.playerController.getPlayerBalances()[playerId];
     }
 
 }
