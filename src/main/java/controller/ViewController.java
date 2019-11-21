@@ -117,6 +117,10 @@ public class ViewController {
         gui.showMessage(name + " er landet på " + fieldName +".");
     }
 
+    public void showDie(int die){
+        gui.setDie(die);
+    }
+
 
 
 }

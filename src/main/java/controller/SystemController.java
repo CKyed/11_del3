@@ -89,6 +89,7 @@ public class SystemController {
         while (true){
             //rolls the die
             roll= gameController.getRoll();
+            viewController.showDie(roll);
 
             //Updates the position of the active player
             movePlayerCar(activePlayerId,roll,false);
