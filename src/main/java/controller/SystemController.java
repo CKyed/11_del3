@@ -121,9 +121,11 @@ public class SystemController {
 
 
     public void playTurnOnNewField(int playerId, int newFieldId){
+        //Gets name of active player
+        String activePlayerName = gameController.getPlayerController().getPlayers()[playerId].getName();
         switch (gameController.getBoardController().getCurrentField(newFieldId).getType()){
             case 'p':
-
+                landedOnProperty(playerId,newFieldId);
                 break;
             case 'c':
                 break;
@@ -131,10 +133,13 @@ public class SystemController {
                 landedOnJail(playerId);
                 break;
             case 'v':
+                viewController.showMessage( activePlayerName+ " er på besøg i fængsel.");
                 break;
             case 's':
+                viewController.displayLandedOnNewField(activePlayerName,"start");
                 break;
             case 'f':
+                viewController.displayLandedOnNewField(activePlayerName,"gratis parkering");
                 break;
         }
     }
@@ -143,8 +148,25 @@ public class SystemController {
         viewController.displayLandedOnNewField(gameController.getPlayerController().getPlayers()[playerId].getName(),"Fængslet");
         movePlayerCar(playerId,12,true);
         gameController.setPlayerInPrison(playerId,true);
+        updatePlayerBalances();
+    }
+
+    public void updatePlayerBalances(){
+        int newBalance;
+        for (int i=0; i<gameController.getNumberOfPlayers();i++){
+            newBalance = gameController.getPlayerController().getPlayerBalances()[i];
+            viewController.updatePlayerBalance(i,newBalance);
+        }
+
 
     }
+
+    public void landedOnProperty(int playerId, int fieldId){
+        gameController.landedOnField(playerId,fieldId);
+
+    }
+
+
 
 
 

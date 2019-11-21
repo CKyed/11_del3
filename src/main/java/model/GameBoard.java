@@ -4,6 +4,7 @@ import model.fields.*;
 
 public class GameBoard {
     protected Field[] fields;
+    private Property[] properties;
 
 
     public GameBoard(String[] names, char[] types, int[] prices, String[] colors){
@@ -12,7 +13,7 @@ public class GameBoard {
 
         for (int i=0;i<numberOfFields;i++){
             switch (types[i]){
-                case 'p': this.fields[i] = new Property(names[i],i,colors[i],prices[i],types[i]);
+                case 'p': this.fields[i] = new Property(names[i],i,colors[i],prices[i],types[i],-1);
                 break;
                 case 'c': this.fields[i] = new ChanceCardField(names[i],i,colors[i],types[i]);
                 break;
@@ -26,6 +27,8 @@ public class GameBoard {
                 break;
             }
         }
+
+
 
     }
 

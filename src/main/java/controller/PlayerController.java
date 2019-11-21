@@ -66,4 +66,18 @@ public class PlayerController {
     public void setPlayerInPrison(int playerID,boolean inPrison){
         players[playerID].setInPrison(inPrison);
     }
+
+    public boolean safeTransferToBank(int playerId,int amount){
+        boolean succes;
+        if(amount<=players[playerId].getAccountBalance()){
+            succes=true;
+            addPointsToPlayer(playerId, -amount);
+        } else {
+            succes=false;
+            addPointsToPlayer(playerId,-players[playerId].getAccountBalance());
+        }
+        return succes;
+    }
+
+
 }

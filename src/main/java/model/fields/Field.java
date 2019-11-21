@@ -20,4 +20,9 @@ public abstract class Field {
     public char getType() {
         return type;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
 }
