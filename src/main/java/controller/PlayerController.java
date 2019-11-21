@@ -58,8 +58,12 @@ public class PlayerController {
         players[playerId].deposit(amount);
     }
 
+    public boolean isPlayerInPrison(int playerID){
+        return players[playerID].isInPrison();
 
+    }
 
-
-
+    public void setPlayerInPrison(int playerID,boolean inPrison){
+        players[playerID].setInPrison(inPrison);
+    }
 }

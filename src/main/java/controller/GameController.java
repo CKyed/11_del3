@@ -70,7 +70,14 @@ public class GameController {
         return playerController.getNumberOfPlayers();
     }
 
+    public boolean isPlayerInPrison(int playerID){
+        return playerController.isPlayerInPrison(playerID);
 
+    }
+
+    public void setPlayerInPrison(int playerID,boolean inPrison){
+        playerController.setPlayerInPrison(playerID,inPrison);
+    }
 
 
 }

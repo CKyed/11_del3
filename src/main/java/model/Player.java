@@ -5,6 +5,8 @@ public class Player {
     private String name;
     private int currentFieldId;
     private int id;
+    private boolean hasPrisonCard=false;
+    private boolean inPrison=false;
 
 
     public Player(String name, int pointStart, int id){
@@ -39,6 +41,22 @@ public class Player {
 
     public void deposit(int amount){
         this.account.deposit(amount);
+    }
+
+    public boolean isHasPrisonCard() {
+        return hasPrisonCard;
+    }
+
+    public void setHasPrisonCard(boolean hasPrisonCard) {
+        this.hasPrisonCard = hasPrisonCard;
+    }
+
+    public boolean isInPrison() {
+        return inPrison;
+    }
+
+    public void setInPrison(boolean inPrison) {
+        this.inPrison = inPrison;
     }
 }
 
