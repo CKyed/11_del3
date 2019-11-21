@@ -79,6 +79,27 @@ public class GameController {
         playerController.setPlayerInPrison(playerID,inPrison);
     }
 
+    public String executePlayerInPrison(int activePlayerId){
+        //Checks if player is in prison. If true it checks if the player has a "Prison chancecard", else it withdraw 1 points from playercard
+        String msg="";
+        String activePlayerName =playerController.getPlayers()[activePlayerId].getName();
+        if(isPlayerInPrison(activePlayerId)){
+            msg = activePlayerName + " er i fængsel.\n";
+            if(getPlayerController().getPlayers()[activePlayerId].isHasPrisonCard()){
+                getPlayerController().getPlayers()[activePlayerId].setHasPrisonCard(false);
+                msg += activePlayerName +" bruger sit løsladelseskort til at forlade fængslet uden bøde.";
+            }
+            else{
+                getPlayerController().addPointsToPlayer(activePlayerId,-1);
+                msg += activePlayerName + " betaler M1 i bøde og forlader fængslet.";
+
+            }
+           setPlayerInPrison(activePlayerId,false);
+
+        }
+        return msg;
+    }
+
 
 }
 

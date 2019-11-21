@@ -121,7 +121,9 @@ public class ViewController {
         gui.setDie(die);
     }
 
-
+    public void showMessage(String msg){
+        gui.showMessage(msg);
+    }
 
 
 

@@ -86,20 +86,21 @@ public class SystemController {
         int activePlayerId = 0;
         int roll=0;
         int newFieldId;
+        String activePlayerName;
         while (true){
 
-            //Checks if player is in prison. If true it checks if the player has a "Prison chancecard", else it withdraw 1 points from playercard
-            if(gameController.isPlayerInPrison(activePlayerId)){
-                if(gameController.getPlayerController().getPlayers()[activePlayerId].isHasPrisonCard()){
-                    gameController.getPlayerController().getPlayers()[activePlayerId].setHasPrisonCard(false);
+            //Gets the name of the active player
+            activePlayerName=gameController.getPlayerController().getPlayers()[activePlayerId].getName();
 
-                }
-                else{
-                gameController.getPlayerController().addPointsToPlayer(activePlayerId,-1);
-                }
-                gameController.setPlayerInPrison(activePlayerId,false);
+            //Displays who's turn it is
+            //viewController.showMessage("Det er "+ activePlayerName + "s tur.");
 
+            String prisonMessage = gameController.executePlayerInPrison(activePlayerId);
+            if (!prisonMessage.equals("")){
+                viewController.showMessage(prisonMessage);
             }
+
+
             //rolls the die
             roll= gameController.getRoll();
             viewController.showDie(roll);
@@ -122,6 +123,7 @@ public class SystemController {
     public void playTurnOnNewField(int playerId, int newFieldId){
         switch (gameController.getBoardController().getCurrentField(newFieldId).getType()){
             case 'p':
+
                 break;
             case 'c':
                 break;
