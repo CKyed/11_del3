@@ -121,12 +121,12 @@ public class SystemController {
                 playTurnOnNewField(activePlayerId, newFieldId);
 
                 //Checks if game is over
+                checkIfGameOver();
 
-
-                //Gives the turn to the next player
-                activePlayerId++;
-                activePlayerId = activePlayerId % gameController.getNumberOfPlayers();
             }
+            //Gives the turn to the next player
+            activePlayerId++;
+            activePlayerId = activePlayerId % gameController.getNumberOfPlayers();
         }
 
 
@@ -318,14 +318,18 @@ public class SystemController {
             simulatedRoll+=24;
         }
         movePlayerCar(playerId,simulatedRoll,false);
+        landedOnProperty(playerId,chosenFieldId);
     }
 
     public void moveToVacantProperty(int playerId, int oldFieldId){
         ArrayList<Integer> vacantPropertyIds = new ArrayList<Integer>();
         for (int i =0; i<24;i++){
-            if (((Property)gameController.getBoardController().getGameBoard().getFields()[i]).getOwnedByPlayerId()>=0){
-                vacantPropertyIds.add(i);
+            if(gameController.getBoardController().getGameBoard().getFields()[i].getType()=='p'){
+                if (((Property)gameController.getBoardController().getGameBoard().getFields()[i]).getOwnedByPlayerId()==-1){
+                    vacantPropertyIds.add(i);
+                }
             }
+
         }
 
         String[] vacantProperties = new String[vacantPropertyIds.size()];
@@ -346,6 +350,7 @@ public class SystemController {
         //Moves the player to the correct field
         int simulatedRoll = (24+selectedFieldId-oldFieldId)%24;
         movePlayerCar(playerId,simulatedRoll,false);
+        landedOnProperty(playerId,selectedFieldId);
 
 
     }
