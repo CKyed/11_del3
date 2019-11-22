@@ -37,33 +37,27 @@ public class ViewController {
             switch (types[i]){
                 case 'p': //Property
                     fields[i] = new GUI_Street();
-                    fields[i].setSubText("M"+prices[i]); //SubText er under "Overskriften. Hvis ingen SubText metode vil der stå "SubText" på Boardet
-                    fields[i].setDescription("Ledig");
+                    fields[i].setSubText("Pris: M"+prices[i] + "     Ingen ejer"); //SubText er under "Overskriften. Hvis ingen SubText metode vil der stå "SubText" på Boardet
                     break;
                 case 's': //Start
                     fields[i] = new GUI_Start();
                     fields[i].setSubText("");
-                    fields[i].setDescription("");
                     break;
                 case 'c': //ChancecardField
                     fields[i] = new GUI_Chance();
                     fields[i].setSubText("");
-                    fields[i].setDescription("");
                     break;
                 case 'j': //Jail
                     fields[i] = new GUI_Jail();
                     fields[i].setSubText("Gå i fængsel");
-                    fields[i].setDescription("");
                     break;
                 case 'v'://VisitJail
                     fields[i] = new GUI_Jail();
                     fields[i].setSubText("På besøg");
-                    fields[i].setDescription("");
                     break;
                 case 'f': //FreeParking
                     fields[i] = new GUI_Refuge();
                     fields[i].setSubText("");
-                    fields[i].setDescription("");
                     break;
             }
             for (int j=0; j<this.colors.length;j++){
@@ -71,7 +65,7 @@ public class ViewController {
                     newColor = this.colors[j];
                 }
             }
-
+            fields[i].setDescription(names[i]);
             fields[i].setBackGroundColor(newColor);
             fields[i].setTitle(names[i]);
         }
@@ -162,6 +156,10 @@ public class ViewController {
 
     public String getUserButtonPressed(String msg, String ... options){
         return gui.getUserButtonPressed(msg,options);
+    }
+
+    public void setNewPropertyOwner(int fieldId, int price, String ownerName){
+        guiFields[fieldId].setSubText("Pris: M"+price + "     Ejes af "+ownerName+".");
     }
 
 

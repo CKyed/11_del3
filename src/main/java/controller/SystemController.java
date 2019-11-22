@@ -176,6 +176,11 @@ public class SystemController {
 
     public void landedOnProperty(int playerId, int fieldId){
         String statusMessage = gameController.landedOnProperty(playerId,fieldId);
+        if (statusMessage.contains("og ejer nu")){
+            int fieldPrice =gameController.getBoardController().getGameBoard().getFields()[fieldId].getPrice();
+            String playerName = gameController.getPlayerController().getPlayers()[playerId].getName();
+            viewController.setNewPropertyOwner(fieldId,fieldPrice,playerName);
+        }
         viewController.showMessage(statusMessage);
         updatePlayerBalances();
         checkIfGameOver();
