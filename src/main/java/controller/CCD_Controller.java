@@ -6,9 +6,13 @@ public class CCD_Controller {
     private ChanceCardDeck chanceCardDeck;
 
 
-    public CCD_Controller(){
-        this.chanceCardDeck = new ChanceCardDeck(chanceCardTexts);
-        this.chanceCardDeck.shuffle();
+    public CCD_Controller(int numberOfPlayers){
+        this.chanceCardDeck = new ChanceCardDeck(chanceCardTexts,numberOfPlayers);
+        //this.chanceCardDeck.shuffle();
+    }
+
+    public ChanceCardDeck getChanceCardDeck(){
+        return this.chanceCardDeck;
     }
 
 

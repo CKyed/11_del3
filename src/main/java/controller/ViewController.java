@@ -140,5 +140,19 @@ public class ViewController {
         return false;
     }
 
+    public void displayChanceCard(String text){
+        gui.displayChanceCard(text);
+    }
+
+    public String getUserSelection(String msg, String ... options){
+        return gui.getUserSelection(msg,options);
+    }
+
+    public String getUserButtonPressed(String msg, String ... options){
+        return  gui.getUserButtonPressed(msg,options);
+    }
+
+
+
 
 }

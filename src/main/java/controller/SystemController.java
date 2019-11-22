@@ -28,7 +28,7 @@ public class SystemController {
         viewController.setupGuiPlayers(playerNames,playerBalances,0);
     }
 
-    public void teleportPlayerCar(int playerId, int dieRoll, boolean fromJail){
+    public void teleportPlayerCar(int playerId, int dieRoll, boolean toJail){
         //Gets old field id
         int oldFieldId= gameController.getPlayerController().getPlayerFieldId(playerId);
         int numberOfPlayers = gameController.getPlayerController().getNumberOfPlayers();
@@ -56,7 +56,7 @@ public class SystemController {
         }
 
         //Updates the active players point (maybe he passed start)
-        if (!fromJail){
+        if (!toJail){
             int updatedPlayerPoints = gameController.newBalanceAfterRoll(playerId,oldFieldId,dieRoll);
             viewController.updatePlayerBalance(playerId,updatedPlayerPoints);
         }
@@ -163,9 +163,8 @@ public class SystemController {
             newBalance = gameController.getPlayerController().getPlayerBalances()[i];
             viewController.updatePlayerBalance(i,newBalance);
         }
-
-
     }
+
 
     public void landedOnProperty(int playerId, int fieldId){
         String statusMessage = gameController.landedOnProperty(playerId,fieldId);
@@ -175,7 +174,85 @@ public class SystemController {
 
     }
 
-    public void landedOnChanceCardField(int playerId, int fieldId){
+    public void landedOnChanceCardField(int playerId,int fieldId){
+        String activePlayerName = gameController.getPlayerController().getPlayers()[playerId].getName();
+
+        //Displays the chancecard-text
+        String ccText = gameController.getCcd_controller().getChanceCardDeck().getChanceCards()[0].getText();
+        viewController.displayChanceCard(ccText);
+        //Displays message
+        viewController.showMessage(activePlayerName + " er landet på et chancekortfelt! Læs kortet i midten af brættet.");
+
+
+        //Gets the id of the chanceCard
+        int ccId = gameController.getCcd_controller().getChanceCardDeck().getChanceCards()[0].getId();
+
+        //Puts the card in the bottom of the deck
+        gameController.getCcd_controller().getChanceCardDeck().draw();
+
+        String selection="";
+        switch (ccId){
+            case 0://Ryk frem til start
+                movePlayerCar(playerId,24-fieldId,false);
+                break;
+            case 1://Ryk frem til standpromenaden
+                movePlayerCar(playerId,23-fieldId,false);
+                break;
+            case 3://Ryk op til 5 felter frem
+                selection = viewController.getUserSelection("Hvor mange felter vil du rykke frem?","1","2","3","4","5");
+                int chosenDieRoll = Integer.parseInt(selection);
+                movePlayerCar(playerId,chosenDieRoll,false);
+                break;
+            case 4: //Ryk 1 felt frem eller tag et nyt kort
+                selection = viewController.getUserButtonPressed("Hvad vælger du?","Ryk et felt frem","Tag et chancekort mere");
+                if(selection.equals("Tag et chancekort mere")){
+                    landedOnChanceCardField(playerId,fieldId);
+                }
+
+
+
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
+                break;
+            case 12:
+                break;
+            case 13:
+                break;
+            case 14:
+                break;
+            case 15:
+                break;
+            case 16:
+                break;
+            case 17:
+                break;
+            case 18:
+                break;
+            case 19:
+                break;
+
+
+        }
+
+
+
+
+
+
+
+
 
     }
 
