@@ -84,16 +84,21 @@ public class ViewController {
         playerSelection = Integer.parseInt(gui.getUserButtonPressed("Vælg antal spillere","2","3","4"));
         String[] playerNames = new String[playerSelection];
         String input;
+
         for (int i=0;i<playerSelection;){
             input = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
-            if(!checkPlayerexsistance(playerNames,input)){
+            if(playerNames[0] != null ) {
+                if (!checkPlayerexsistance(playerNames, input)) {
+                    playerNames[i] = input;
+                    i++;
+                } else {
+                    gui.showMessage("To spillere må ikke have samme navn! prøv " + input + "1");
+                }
+            }
+            else if(playerNames[0] == null ){
                 playerNames[i] = input;
                 i++;
-            } else{
-                gui.showMessage("To spillere må ikke have samme navn! prøv " + input+"1");
             }
-
-            
 
         }
 
@@ -134,10 +139,17 @@ public class ViewController {
     public void showMessage(String msg){
         gui.showMessage(msg);
     }
-    public boolean checkPlayerexsistance(String playerName[],String typedName){
+    public static boolean checkPlayerexsistance(String[] playerName,String typedName){
+        //boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
+        //return playerexsistance;
+        for( int i = 0; i < playerName.length; i++){
 
-        boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
-        return playerexsistance;
+            if(playerName[i] != null && playerName[i].equals(typedName))
+                return true;
+        }
+
+        return false;
+
     }
 
 
