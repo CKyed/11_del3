@@ -11,6 +11,9 @@ public class GameController {
     private int startBonus=2;
     private BoardController boardController;
 
+    private CCD_Controller ccd_controller;
+
+
     private PlayerController playerController;
 
     public GameController() {
@@ -22,8 +25,13 @@ public class GameController {
         return this.boardController;
     }
 
+    public CCD_Controller getCcd_controller() {
+        return ccd_controller;
+    }
+
     public void setupPlayerController(String[] playerNames){
         this.playerController = new PlayerController(playerNames);
+        ccd_controller = new CCD_Controller(playerNames.length);
     }
 
     public void setPlayerController(PlayerController playerController) {
@@ -142,6 +150,7 @@ public class GameController {
             if (canAfford){
                 msg+= activePlayerName +" betaler M" + propertyPrice + " til Banken og ejer nu "+propertyName+".\n";
                 ((Property)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
+
             } else {
                 msg+= activePlayerName +" skal betale M" + propertyPrice + " til banken, men har ikke råd.\n";
                 gameOver=true;
@@ -155,5 +164,30 @@ public class GameController {
     public boolean isGameOver() {
         return gameOver;
     }
+
+    public String returnWinnerMessage(){
+        String winnerMessage="";
+        int currentHighest=0;
+        int[] playerBalances = playerController.getPlayerBalances();
+        for (int i=0;i<getNumberOfPlayers();i++){
+            if(playerBalances[i]>currentHighest){
+                currentHighest=playerBalances[i];
+                winnerMessage=playerController.getPlayers()[i].getName();
+            } else if (playerBalances[i]==currentHighest){
+                winnerMessage+="og " + playerController.getPlayers()[i].getName();
+            }
+        }
+
+        winnerMessage+= " har vundet spillet med en endelig score på M" + currentHighest + ".";
+
+
+
+        return winnerMessage;
+    }
+
+
+
+
+
 }
 

@@ -3,10 +3,11 @@ package model;
 public class ChanceCardDeck {
     private ChanceCard[] chanceCards;
 
-    public ChanceCardDeck(String[] chanceCardTexts){
+    public ChanceCardDeck(String[] chanceCardTexts,int numberOfPlayers){
         this.chanceCards = new ChanceCard[chanceCardTexts.length];
+        int numberOfRelevantChanceCards = chanceCardTexts.length-4+numberOfPlayers;
 
-        for (int i=0;i<chanceCardTexts.length;i++){
+        for (int i=0;i<numberOfRelevantChanceCards;i++){
             chanceCards[i] = new ChanceCard(chanceCardTexts[i],i);
         }
     }
@@ -21,8 +22,8 @@ public class ChanceCardDeck {
 
     public void shuffle(){
     for (int i=0; i<1000; i++ ){
-        int a= (int) Math.random()*chanceCards.length;
-        int b= (int) Math.random()*chanceCards.length;
+        int a= (int) (Math.random()*chanceCards.length);
+        int b= (int) (Math.random()*chanceCards.length);
         swap(a,b);
 
         }
@@ -38,9 +39,12 @@ public class ChanceCardDeck {
         return upper;
         }
 
-
-
+    public ChanceCard[] getChanceCards() {
+        return chanceCards;
     }
+}
+
+
 
 
 
