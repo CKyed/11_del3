@@ -4,6 +4,8 @@ import gui_main.GUI;
 
 import javax.swing.text.View;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ViewController {
     private GUI gui;
@@ -81,8 +83,16 @@ public class ViewController {
         int playerSelection = 2;
         playerSelection = Integer.parseInt(gui.getUserButtonPressed("Vælg antal spillere","2","3","4"));
         String[] playerNames = new String[playerSelection];
-        for (int i=0;i<playerSelection;i++){
-            playerNames[i] = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
+        String input;
+        for (int i=0;i<playerSelection;){
+            input = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
+            if(!checkPlayerexsistance(playerNames,input)){
+                playerNames[i] = input;
+                i++;
+            } else{
+                gui.showMessage("To spillere må ikke have samme navn! prøv " + input+"1");
+            }
+
             
 
         }
@@ -124,7 +134,11 @@ public class ViewController {
     public void showMessage(String msg){
         gui.showMessage(msg);
     }
+    public boolean checkPlayerexsistance(String playerName[],String typedName){
 
+        boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
+        return playerexsistance;
+    }
 
 
 }
