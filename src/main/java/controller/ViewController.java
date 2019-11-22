@@ -136,8 +136,8 @@ public class ViewController {
     }
     public boolean checkPlayerexsistance(String playerName[],String typedName){
 
-        boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
-        return playerexsistance;
+        //boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
+        return false;
     }
 
 

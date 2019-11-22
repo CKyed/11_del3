@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class SystemController {
     private GameController gameController;
     private ViewController viewController;
+    private boolean gameOver=false;
 
     public SystemController(){
         this.gameController = new GameController();
@@ -87,7 +88,7 @@ public class SystemController {
         int roll=0;
         int newFieldId;
         String activePlayerName;
-        while (true){
+        while (!gameOver){
 
             //Gets the name of the active player
             activePlayerName=gameController.getPlayerController().getPlayers()[activePlayerId].getName();
@@ -175,7 +176,9 @@ public class SystemController {
 
     public void checkIfGameOver(){
         if(gameController.isGameOver()){
-            viewController.showMessage("GAME OVER");
+            String winningMessage = gameController.returnWinnerMessage();
+            viewController.showMessage(winningMessage);
+            gameOver=true;
         }
     }
 

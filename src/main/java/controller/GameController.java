@@ -155,5 +155,25 @@ public class GameController {
     public boolean isGameOver() {
         return gameOver;
     }
+
+    public String returnWinnerMessage(){
+        String winnerMessage="";
+        int currentHighest=0;
+        int[] playerBalances = playerController.getPlayerBalances();
+        for (int i=0;i<getNumberOfPlayers();i++){
+            if(playerBalances[i]>currentHighest){
+                currentHighest=playerBalances[i];
+                winnerMessage=playerController.getPlayers()[i].getName();
+            } else if (playerBalances[i]==currentHighest){
+                winnerMessage+="og " + playerController.getPlayers()[i].getName();
+            }
+        }
+
+        winnerMessage+= " har vundet spillet med en endelig score på M" + currentHighest + ".";
+
+
+
+        return winnerMessage;
+    }
 }
 
