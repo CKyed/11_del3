@@ -83,8 +83,16 @@ public class ViewController {
         int playerSelection = 2;
         playerSelection = Integer.parseInt(gui.getUserButtonPressed("Vælg antal spillere","2","3","4"));
         String[] playerNames = new String[playerSelection];
-        for (int i=0;i<playerSelection;i++){
-            playerNames[i] = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
+        String input;
+        for (int i=0;i<playerSelection;){
+            input = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
+            if(!checkPlayerexsistance(playerNames,input)){
+                playerNames[i] = input;
+                i++;
+            } else{
+                gui.showMessage("To spillere må ikke have samme navn! prøv " + input+"1");
+            }
+
             
 
         }
