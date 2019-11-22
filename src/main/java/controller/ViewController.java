@@ -4,6 +4,8 @@ import gui_main.GUI;
 
 import javax.swing.text.View;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ViewController {
     private GUI gui;
@@ -124,7 +126,11 @@ public class ViewController {
     public void showMessage(String msg){
         gui.showMessage(msg);
     }
+    public boolean checkPlayerexsistance(String playerName[],String typedName){
 
+        boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
+        return playerexsistance;
+    }
 
 
 }
