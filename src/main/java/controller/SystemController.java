@@ -355,11 +355,6 @@ public class SystemController {
 
     }
 
-
-
-
-
-
     public void checkIfGameOver(){
         if(gameController.isGameOver()){
             String winningMessage = gameController.returnWinnerMessage();
