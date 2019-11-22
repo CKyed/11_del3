@@ -8,7 +8,7 @@ public class CCD_Controller {
 
     public CCD_Controller(int numberOfPlayers){
         this.chanceCardDeck = new ChanceCardDeck(chanceCardTexts,numberOfPlayers);
-        //this.chanceCardDeck.shuffle();
+        this.chanceCardDeck.shuffle();
     }
 
     public ChanceCardDeck getChanceCardDeck(){
@@ -24,7 +24,7 @@ public class CCD_Controller {
             "Ryk frem til START.\nModtag M2.",
             "Ryk frem til Strandpromenaden",
             "Ryk op til 5 felter frem.",
-            "Ryk 1 felt frem, eller tag et chancekort mere",
+            "Ryk 1 felt frem, eller tag et chancekort mere.",
 
             //Free field 4-11
             "GRATIS FELT\nRyk frem til et orange felt.\nHvis det er ledigt, får du det GRATIS. Ellers skal du BETALE leje til ejeren.",
@@ -46,11 +46,11 @@ public class CCD_Controller {
             "Du løslades uden omkostninger.\nBehold dette kort, indtil du får brug for det",
 
             //Give card to other player 16-19
-            "Giv dette kort til den gule bil, og tag et chancekort mere.\n Gul bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!",
+            "Giv dette kort til den blå bil, og tag et chancekort mere.\n Blå bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!",
             "Giv dette kort til den røde  bil, og tag et chancekort mere.\nRød bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
             //Only when 3 or more players
-            "Giv dette kort til den blå bil, og tag et chancekort  mere.\nBlå bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
+            "Giv dette kort til den grønne bil, og tag et chancekort  mere.\nGrøn bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
             //Only when 4 or more players
-            "Giv dette kort til den grønne bil, og tag et chancekort mere.\nGrøn bil:  På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
+            "Giv dette kort til den gule bil, og tag et chancekort mere.\nGul bil:  På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
     };
 }

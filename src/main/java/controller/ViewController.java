@@ -145,14 +145,15 @@ public class ViewController {
     }
 
     public String getUserSelection(String msg, String ... options){
-        return gui.getUserSelection(msg,options);
+        String selection = gui.getUserSelection(msg,options);
+        return selection;
     }
 
     public String getUserButtonPressed(String msg, String ... options){
         return  gui.getUserButtonPressed(msg,options);
     }
 
-
-
-
+    public GUI getGui() {
+        return gui;
+    }
 }

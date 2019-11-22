@@ -22,8 +22,8 @@ public class ChanceCardDeck {
 
     public void shuffle(){
     for (int i=0; i<1000; i++ ){
-        int a= (int) Math.random()*chanceCards.length;
-        int b= (int) Math.random()*chanceCards.length;
+        int a= (int) (Math.random()*chanceCards.length);
+        int b= (int) (Math.random()*chanceCards.length);
         swap(a,b);
 
         }

@@ -7,6 +7,7 @@ public class Player {
     private int id;
     private boolean hasPrisonCard=false;
     private boolean inPrison=false;
+    private boolean nextTurnVacantField = false;
 
 
     public Player(String name, int pointStart, int id){
@@ -57,6 +58,14 @@ public class Player {
 
     public void setInPrison(boolean inPrison) {
         this.inPrison = inPrison;
+    }
+
+    public boolean isNextTurnVacantField() {
+        return nextTurnVacantField;
+    }
+
+    public void setNextTurnVacantField(boolean nextTurnVacantField) {
+        this.nextTurnVacantField = nextTurnVacantField;
     }
 }
 
