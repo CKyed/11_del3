@@ -152,5 +152,17 @@ public class ViewController {
 
     }
 
+    public void displayChanceCard(String msg){
+        gui.displayChanceCard(msg);
+    }
+
+    public String getUserSelection(String msg, String ... options){
+        return gui.getUserSelection(msg,options);
+    }
+
+    public String getUserButtonPressed(String msg, String ... options){
+        return gui.getUserButtonPressed(msg,options);
+    }
+
 
 }

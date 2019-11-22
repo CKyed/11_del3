@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CDIO3" />
         <module name="11_del3v0.3" />
+        <module name="CDIO3NY" />
       </profile>
     </annotationProcessing>
   </component>
