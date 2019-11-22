@@ -175,5 +175,12 @@ public class GameController {
 
         return winnerMessage;
     }
+
+    public String nextChanceCard(){
+        return "";
+    }
+
+
+
 }
 

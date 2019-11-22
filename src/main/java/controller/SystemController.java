@@ -106,6 +106,7 @@ public class SystemController {
             roll= gameController.getRoll();
             viewController.showDie(roll);
 
+
             //Updates the position of the active player
             movePlayerCar(activePlayerId,roll,false);
             newFieldId = gameController.getPlayerController().getPlayerFieldId(activePlayerId);
@@ -132,6 +133,7 @@ public class SystemController {
                 landedOnProperty(playerId,newFieldId);
                 break;
             case 'c':
+                landedOnChanceCardField(playerId,newFieldId);
                 break;
             case 'j':
                 landedOnJail(playerId);
@@ -171,8 +173,16 @@ public class SystemController {
         updatePlayerBalances();
         checkIfGameOver();
 
+    }
+
+    public void landedOnChanceCardField(int playerId, int fieldId){
 
     }
+
+
+
+
+
 
     public void checkIfGameOver(){
         if(gameController.isGameOver()){
