@@ -110,6 +110,9 @@ public class SystemController {
             newFieldId = gameController.getPlayerController().getPlayerFieldId(activePlayerId);
             playTurnOnNewField(activePlayerId,newFieldId);
 
+            //Checks if game is over
+
+
             //Gives the turn to the next player
             activePlayerId++;
             activePlayerId= activePlayerId%gameController.getNumberOfPlayers();
@@ -162,8 +165,18 @@ public class SystemController {
     }
 
     public void landedOnProperty(int playerId, int fieldId){
-        gameController.landedOnField(playerId,fieldId);
+        String statusMessage = gameController.landedOnProperty(playerId,fieldId);
+        viewController.showMessage(statusMessage);
+        updatePlayerBalances();
+        checkIfGameOver();
 
+
+    }
+
+    public void checkIfGameOver(){
+        if(gameController.isGameOver()){
+            viewController.showMessage("GAME OVER");
+        }
     }
 
 

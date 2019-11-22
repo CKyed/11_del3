@@ -25,4 +25,7 @@ public abstract class Field {
         return this.name;
     }
 
+    public int getPrice() {
+        return -2;
+    }
 }

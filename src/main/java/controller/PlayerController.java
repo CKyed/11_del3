@@ -68,6 +68,7 @@ public class PlayerController {
     }
 
     public boolean safeTransferToBank(int playerId,int amount){
+        //Returns true if transfer is sucessfull. Otherwise returns false and ends game.
         boolean succes;
         if(amount<=players[playerId].getAccountBalance()){
             succes=true;
@@ -75,6 +76,22 @@ public class PlayerController {
         } else {
             succes=false;
             addPointsToPlayer(playerId,-players[playerId].getAccountBalance());
+        }
+        return succes;
+    }
+
+    public boolean safeTransferToPlayer(int fromPlayerId, int amount, int toPlayerId){
+        //Returns true if transfer is sucessfull. Otherwise returns false and ends game.
+
+        boolean succes;
+        if(amount<=players[fromPlayerId].getAccountBalance()){
+            succes=true;
+            addPointsToPlayer(fromPlayerId, -amount);
+            addPointsToPlayer(toPlayerId, amount);
+        } else {
+            succes=false;
+            addPointsToPlayer(fromPlayerId,-players[fromPlayerId].getAccountBalance());
+            addPointsToPlayer(toPlayerId,players[fromPlayerId].getAccountBalance());
         }
         return succes;
     }

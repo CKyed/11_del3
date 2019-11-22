@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class GameController {
     private DiceCup diceCup;
-
+    private boolean gameOver = false;
     private int startBonus=2;
     private BoardController boardController;
 
@@ -90,9 +90,15 @@ public class GameController {
                 getPlayerController().getPlayers()[activePlayerId].setHasPrisonCard(false);
                 msg += activePlayerName +" bruger sit løsladelseskort til at forlade fængslet uden bøde.";
             }
-            else{
-                getPlayerController().addPointsToPlayer(activePlayerId,-1);
-                msg += activePlayerName + " betaler M1 i bøde og forlader fængslet.";
+            else{     //He doesnt have the card
+                boolean canAfford =playerController.safeTransferToBank(activePlayerId,1);
+                if (canAfford){
+                  msg += activePlayerName + " betaler M1 i bøde og forlader fængslet.";
+                } else{
+                    msg+= activePlayerName + " har ikke råd til at betale bøden.";
+                    gameOver=true;
+                }
+
 
             }
            setPlayerInPrison(activePlayerId,false);
@@ -101,50 +107,53 @@ public class GameController {
         return msg;
     }
 
-    public String landedOnField(int playerId, int fieldId){
+    public String landedOnProperty(int playerId, int fieldId){
         //Checks who, if anyone, owns the field
-        int ownedById = boardController.getPropertiesOwnedByIds()[fieldId];
+        int propertyOwnerId = boardController.getPropertiesOwnedByIds()[fieldId];
         int activePlayerBalance = playerController.getPlayerBalances()[playerId];
-        int propertyPrice = ((Property)boardController.getGameBoard().getFields()[fieldId]).getPrice();
-        String propertyOwnerName = playerController.getPlayers()[ownedById].getName();
+        int propertyPrice = boardController.getGameBoard().getFields()[fieldId].getPrice();
+        String propertyOwnerName="Ingen";
+        if(propertyOwnerId>=0){
+            propertyOwnerName = playerController.getPlayers()[propertyOwnerId].getName();
+        }
         String propertyName = boardController.getGameBoard().getFields()[fieldId].getName();
         String activePlayerName = playerController.getPlayers()[playerId].getName();
         String msg="";
+        boolean canAfford;
 
-        //If it is owned
-        if(ownedById>=0){
+
+        if (playerId==propertyOwnerId){
+           msg+=activePlayerName+" ejer selv " + propertyName +".";
+        }
+        else if(propertyOwnerId>=0){ //If it is owned
             msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
-            boolean canAfford = playerController.safeTransferToBank(playerId,propertyPrice);
-
-
-            //If activePlayer can afford the rent
-            if(propertyPrice<=activePlayerBalance){
-                msg+= activePlayerName + " betaler " + propertyPrice + " i leje til " + propertyOwnerName+".";
-            } else if(propertyPrice>activePlayerBalance){
-                //IKKE FÆRDIG       - her slutter spillet
+            canAfford = playerController.safeTransferToPlayer(playerId,propertyPrice,propertyOwnerId);
+            if (canAfford){
+                msg+= activePlayerName +" betaler M" + propertyPrice + " til " +propertyOwnerName +".\n";
+            } else {
+                msg+= activePlayerName +" skal betale M" + propertyPrice + " til " +propertyOwnerName +", men har ikke råd.\n";
+                gameOver=true;
             }
 
-        } else if (ownedById==-1){//If it is not owned
-            //If player can afford the property
-            if(propertyPrice<= activePlayerBalance){
+
+        } else if (propertyOwnerId==-1){//If it is not owned
+            msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
+            canAfford = playerController.safeTransferToBank(playerId,propertyPrice);
+            if (canAfford){
+                msg+= activePlayerName +" betaler M" + propertyPrice + " til Banken og ejer nu "+propertyName+".\n";
                 ((Property)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
-
-
-            } else if(propertyPrice>activePlayerBalance) {
-                //IKKE FÆRDIG       - her slutter spillet
+            } else {
+                msg+= activePlayerName +" skal betale M" + propertyPrice + " til banken, men har ikke råd.\n";
+                gameOver=true;
             }
-
-
 
         }
 
-
+        return msg;
     }
 
-    public void endGame(){                     //HOVHOVHOV
-
+    public boolean isGameOver() {
+        return gameOver;
     }
-
-
 }
 

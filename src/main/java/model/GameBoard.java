@@ -27,16 +27,11 @@ public class GameBoard {
                 break;
             }
         }
-
-
-
     }
 
     public Field[] getFields() {
         return this.fields;
     }
-
-
 
 
 }
