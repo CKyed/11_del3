@@ -4,8 +4,8 @@ public class ChanceCardDeck {
     private ChanceCard[] chanceCards;
 
     public ChanceCardDeck(String[] chanceCardTexts,int numberOfPlayers){
-        this.chanceCards = new ChanceCard[chanceCardTexts.length];
         int numberOfRelevantChanceCards = chanceCardTexts.length-4+numberOfPlayers;
+        this.chanceCards = new ChanceCard[numberOfRelevantChanceCards];
 
         for (int i=0;i<numberOfRelevantChanceCards;i++){
             chanceCards[i] = new ChanceCard(chanceCardTexts[i],i);

@@ -70,6 +70,7 @@ public class ViewController {
         }
         this.guiFields = fields;
         this.gui = new GUI(fields,Color.WHITE);
+        this.gui.setChanceCard("Prøv lykken");
     }
 
     public String[] createPlayers(){
@@ -196,6 +197,10 @@ public class ViewController {
 
     public void setNewPropertyOwner(int fieldId, int price, String ownerName){
         guiFields[fieldId].setSubText("Pris: M"+price + "     Ejes af "+ownerName+".");
+    }
+
+    public void closeGui(){
+        gui.close();
     }
 
 

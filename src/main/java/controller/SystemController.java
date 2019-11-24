@@ -90,6 +90,7 @@ public class SystemController {
         int roll=0;
         int newFieldId;
         String activePlayerName;
+
         while (!gameOver){
 
             //Gets the name of the active player
@@ -129,6 +130,8 @@ public class SystemController {
             activePlayerId = activePlayerId % gameController.getNumberOfPlayers();
         }
 
+        viewController.showMessage("Tak for spillet! Luk vinduet ved at trykke på X i hjørnet, eller tryk OK for at spille igen.");
+        viewController.closeGui();
 
     }
 
@@ -368,6 +371,10 @@ public class SystemController {
             viewController.showMessage(winningMessage);
             gameOver=true;
         }
+    }
+
+    public void sayWelcome(){
+        viewController.showMessage("Velkommen til Juniormatador-spillet udviklet af gruppe 11!");
     }
 
 
