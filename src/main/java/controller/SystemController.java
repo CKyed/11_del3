@@ -138,12 +138,13 @@ public class SystemController {
         String activePlayerName = gameController.getPlayerController().getPlayers()[playerId].getName();
         switch (gameController.getBoardController().getCurrentField(newFieldId).getType()){
             case 'p':
-                landedOnProperty(playerId,newFieldId);
+                landedOnProperty(playerId,newFieldId,false);
                 break;
             case 'c':
                 landedOnChanceCardField(playerId,newFieldId);
                 break;
             case 'j':
+                viewController.showMessage( activePlayerName+ " ryger direkte i fængslet! Bøden er på M1!");
                 landedOnJail(playerId);
                 break;
             case 'v':
@@ -174,9 +175,10 @@ public class SystemController {
     }
 
 
-    public void landedOnProperty(int playerId, int fieldId){
-        String statusMessage = gameController.landedOnProperty(playerId,fieldId);
-        if (statusMessage.contains("og ejer nu")){
+    public void landedOnProperty(int playerId, int fieldId,boolean free){
+        String statusMessage = gameController.landedOnProperty(playerId,fieldId,free);
+        if (statusMessage.contains("og ejer nu") || statusMessage.contains(" gratis på grund af sit chancekort!")){
+            //A bit of a problem if the player names contains these
             int fieldPrice =gameController.getBoardController().getGameBoard().getFields()[fieldId].getPrice();
             String playerName = gameController.getPlayerController().getPlayers()[playerId].getName();
             viewController.setNewPropertyOwner(fieldId,fieldPrice,playerName);
@@ -323,7 +325,7 @@ public class SystemController {
             simulatedRoll+=24;
         }
         movePlayerCar(playerId,simulatedRoll,false);
-        landedOnProperty(playerId,chosenFieldId);
+        landedOnProperty(playerId,chosenFieldId,true);
     }
 
     public void moveToVacantProperty(int playerId, int oldFieldId){
@@ -355,7 +357,7 @@ public class SystemController {
         //Moves the player to the correct field
         int simulatedRoll = (24+selectedFieldId-oldFieldId)%24;
         movePlayerCar(playerId,simulatedRoll,false);
-        landedOnProperty(playerId,selectedFieldId);
+        landedOnProperty(playerId,selectedFieldId,false);
 
 
     }

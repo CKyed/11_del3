@@ -115,7 +115,7 @@ public class GameController {
         return msg;
     }
 
-    public String landedOnProperty(int playerId, int fieldId){
+    public String landedOnProperty(int playerId, int fieldId,boolean free){
         //Checks who, if anyone, owns the field
         int propertyOwnerId = boardController.getPropertiesOwnedByIds()[fieldId];
         int activePlayerBalance = playerController.getPlayerBalances()[playerId];
@@ -143,11 +143,15 @@ public class GameController {
                 gameOver=true;
             }
 
+        } else if (free){ //If it is owned and the player gets it for free
+            msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
+            msg+= activePlayerName +" får " + propertyName + " gratis på grund af sit chancekort!";
+            ((Property)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
 
-        } else if (propertyOwnerId==-1){//If it is not owned
+        }else if (propertyOwnerId==-1){//If it is not owned and it is not free
             msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
             canAfford = playerController.safeTransferToBank(playerId,propertyPrice);
-            if (canAfford){
+             if (canAfford){
                 msg+= activePlayerName +" betaler M" + propertyPrice + " til Banken og ejer nu "+propertyName+".\n";
                 ((Property)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
 

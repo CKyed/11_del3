@@ -96,7 +96,19 @@ public class ViewController {
 
         }
 
+        //playerNames = sortWithYoungestFirst(playerNames);
+
         return playerNames;
+    }
+
+    private String[] sortWithYoungestFirst(String[] playerNames) {
+        String[] newNamesList = new String[playerNames.length];
+        newNamesList[0] = gui.getUserButtonPressed("Den yngste spiller starter. Hvem er yngst?",playerNames);
+        gui.showMessage("Turenes retning kører med uret, dvs. mod venstre.");
+        for (int i =1;i<playerNames.length;i++){
+            newNamesList[i]=gui.getUserButtonPressed("Hvem sidder til venstre for "+ newNamesList[i-1] + "?");
+        }
+        return newNamesList;
     }
 
     public void setupGuiPlayers(String[] names, int[] startPoint, int startFieldId){
