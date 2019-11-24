@@ -43,13 +43,16 @@ public class GameController {
     }
 
     public int movePlayerCar(int dieRoll, int playerId){
+        //Input: dieRoll and playerId
+        //Updates the players position
+        //Returns the id of the new field
+
         //Gets the number of fields on the board
         int numberOfFields = boardController.getGameBoard().getFields().length;
 
         //Gets old fieldID and calculates the new one
         int oldFieldId = playerController.getPlayerFieldId(playerId);
         int newFieldId = (oldFieldId + dieRoll)%numberOfFields;
-
 
         //sets player on the new field
         playerController.setPlayerFieldId(playerId,newFieldId);
@@ -116,6 +119,11 @@ public class GameController {
     }
 
     public String landedOnProperty(int playerId, int fieldId,boolean free){
+        //Input: playerId, fieldId and "free"-boolean.
+        //free is only true, if the player lands on the property with a special chancecard and get it for free
+        //Returns a message that displays what happens, and updates the status of balances and so on automatically
+
+
         //Checks who, if anyone, owns the field
         int propertyOwnerId = boardController.getPropertiesOwnedByIds()[fieldId];
         int activePlayerBalance = playerController.getPlayerBalances()[playerId];
@@ -170,6 +178,10 @@ public class GameController {
     }
 
     public String returnWinnerMessage(){
+        //Finds the winner as the player(s) with the most points. If two or more players are tied for nr. 1,
+        //both names will be displayed
+        //Returns a message telling who won.
+
         String winnerMessage="";
         int currentHighest=0;
         int[] playerBalances = playerController.getPlayerBalances();

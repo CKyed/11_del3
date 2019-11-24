@@ -31,6 +31,9 @@ public class SystemController {
     }
 
     public void teleportPlayerCar(int playerId, int dieRoll, boolean toJail){
+        //Moves the player dieRoll fields forward
+        //If fromJail, the player won't get his bonus when passing start
+
         //Gets old field id
         int oldFieldId= gameController.getPlayerController().getPlayerFieldId(playerId);
         int numberOfPlayers = gameController.getPlayerController().getNumberOfPlayers();
@@ -65,11 +68,12 @@ public class SystemController {
 
         //Moves the guiPlayer to the new position
         viewController.setPlayerOnField(newFieldId,playerId);
-
-
     }
 
     public void movePlayerCar(int playerId,int dieRoll, boolean fromJail){
+        //Calls teleportPlayerCar() dieRoll times with a roll of 1, creating an illusion that the car is driving.
+        //If fromJail, the player won't get his bonus when passing start
+
         for(int i=0;i<dieRoll;i++){
             teleportPlayerCar(playerId,1, fromJail);
             try
@@ -179,7 +183,14 @@ public class SystemController {
 
 
     public void landedOnProperty(int playerId, int fieldId,boolean free){
+        //Input playerId, fieldId and free-boolean.
+        //if free==true, the player will get the property for free. Otherwise, the balances and ownership will be
+        //updated and displayed on the board correctly.
+
+        //Makes the gameController update balances and ownership. Returns a message describing what happened.
         String statusMessage = gameController.landedOnProperty(playerId,fieldId,free);
+
+        //If the player now owns the field, the ownership is displayed on the board
         if (statusMessage.contains("og ejer nu") || statusMessage.contains(" gratis på grund af sit chancekort!")){
             //A bit of a problem if the player names contains these
             int fieldPrice =gameController.getBoardController().getGameBoard().getFields()[fieldId].getPrice();
@@ -372,13 +383,6 @@ public class SystemController {
             gameOver=true;
         }
     }
-
-    public void sayWelcome(){
-        viewController.showMessage("Velkommen til Juniormatador-spillet udviklet af gruppe 11!");
-    }
-
-
-
 
 
 

@@ -26,6 +26,7 @@ public class ViewController {
 
     public ViewController(String[] names, String[] colorNames, int[] prices, char[] types){
         boardSetup(names,colorNames,prices,types);
+        gui.showMessage("Velkommen til Juniormatador-spillet udviklet af gruppe 11.");
     }
 
     //Sets the board with the information given
