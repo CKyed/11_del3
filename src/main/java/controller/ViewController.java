@@ -5,6 +5,7 @@ import gui_main.GUI;
 import javax.swing.text.View;
 import java.awt.*;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ViewController {
@@ -15,8 +16,6 @@ public class ViewController {
             new GUI_Car(Color.RED, Color.RED, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
             new GUI_Car(Color.GREEN, Color.GREEN, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
             new GUI_Car(Color.YELLOW, Color.YELLOW, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL)};
-
-
 
 
     //This is the logic for the ViewController, that translates the models colors to awt-colors
@@ -96,18 +95,43 @@ public class ViewController {
 
         }
 
-        //playerNames = sortWithYoungestFirst(playerNames);
+        playerNames = sortWithYoungestFirst(playerNames);
 
         return playerNames;
     }
 
     private String[] sortWithYoungestFirst(String[] playerNames) {
+        //Input: String[] with the unsorted player names
+        //output: Sorted String[] of names in the correct order for the game.
+
+        //Initializes an arraylist of remaining names and an array of sorted names
+        ArrayList<String> remainingNames = new ArrayList<String>();
         String[] newNamesList = new String[playerNames.length];
+
+        //Finds the youngest player and puts it first
         newNamesList[0] = gui.getUserButtonPressed("Den yngste spiller starter. Hvem er yngst?",playerNames);
-        gui.showMessage("Turenes retning kører med uret, dvs. mod venstre.");
-        for (int i =1;i<playerNames.length;i++){
-            newNamesList[i]=gui.getUserButtonPressed("Hvem sidder til venstre for "+ newNamesList[i-1] + "?");
+
+        //Defines the remaining players in the arraylist remainingnames
+        for (int i=0;i<playerNames.length;i++){
+            if (!playerNames[i].equals(newNamesList[0])){
+                remainingNames.add(playerNames[i]);
+            }
         }
+
+        gui.showMessage("Turene går på skift i retning med uret, dvs. mod venstre.");
+
+        //Asks who sits to the left of the last added player
+        String[] remainingNamesArray;
+        for (int i =1;i<playerNames.length;i++){
+            remainingNamesArray = remainingNames.toArray(new String[remainingNames.size()]);
+            if (remainingNames.size()==1){
+                newNamesList[i] = remainingNamesArray[0];
+            } else {
+                newNamesList[i] = gui.getUserButtonPressed("Hvem sidder til venstre for " + newNamesList[i - 1] + "?", remainingNamesArray);
+                remainingNames.remove(newNamesList[i]);
+            }
+        }
+
         return newNamesList;
     }
 
