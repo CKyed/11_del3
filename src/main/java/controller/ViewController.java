@@ -82,17 +82,17 @@ public class ViewController {
 
         for (int i=0;i<playerSelection;){
             input = gui.getUserString("Spiller "+(i+1) + " skriv dit navn");
-            if(playerNames[0] != null ) {
-                if (!checkPlayerexsistance(playerNames, input)) {
+
+            if(input != null ) {
+                if (!checkPlayerexsistance(playerNames, input) && !(input.length()==0)) {
                     playerNames[i] = input;
                     i++;
                 } else {
-                    gui.showMessage("To spillere må ikke have samme navn! prøv " + input + "1");
+                    gui.showMessage("To spillere må ikke have samme navn, og navnet må ikke være tomt.");
                 }
             }
-            else if(playerNames[0] == null ){
-                playerNames[i] = input;
-                i++;
+            else if(input == null ){
+                gui.showMessage("Skriv venligst et navn!");
             }
 
         }
