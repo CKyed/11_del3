@@ -274,7 +274,7 @@ public class SystemController {
                 }
                 break;
             case 15:
-                viewController.showMessage(activePlayerName + " har modtager løsladelseskortet!");
+                viewController.showMessage(activePlayerName + " har modtaget løsladelseskortet!");
                 gameController.getPlayerController().getPlayers()[playerId].setHasPrisonCard(true);
                 break;
             case 16:
