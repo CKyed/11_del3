@@ -67,5 +67,9 @@ public class Player {
     public void setNextTurnVacantField(boolean nextTurnVacantField) {
         this.nextTurnVacantField = nextTurnVacantField;
     }
+
+    public Account getAccount(){
+        return this.account;
+    }
 }
 

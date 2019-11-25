@@ -55,7 +55,13 @@ public class PlayerController {
     }
 
     public void addPointsToPlayer(int playerId, int amount){
-        players[playerId].deposit(amount);
+        if (amount<0){
+            players[playerId].getAccount().withdraw(amount);
+        } else if (amount>0){
+            players[playerId].deposit(amount);
+        }
+
+
     }
 
     public boolean isPlayerInPrison(int playerID){
@@ -84,14 +90,15 @@ public class PlayerController {
         //Returns true if transfer is sucessfull. Otherwise returns false and ends game.
 
         boolean succes;
-        if(amount<=players[fromPlayerId].getAccountBalance()){
+        if(players[fromPlayerId].getAccountBalance()-amount>=0){
             succes=true;
             addPointsToPlayer(fromPlayerId, -amount);
             addPointsToPlayer(toPlayerId, amount);
         } else {
             succes=false;
-            addPointsToPlayer(fromPlayerId,-players[fromPlayerId].getAccountBalance());
-            addPointsToPlayer(toPlayerId,players[fromPlayerId].getAccountBalance());
+            int possibleAmount;
+            possibleAmount =-players[fromPlayerId].getAccount().withdraw(amount);
+            players[toPlayerId].getAccount().deposit(possibleAmount);
         }
         return succes;
     }
