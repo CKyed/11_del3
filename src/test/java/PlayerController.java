@@ -5,11 +5,12 @@ import static org.junit.Assert.*;
 public class PlayerController {
 
 
-    @Test
+    /*@Test
     public boolean safePayToBank{
         for
         assertTrue();
     }
+    */
 
 
 
