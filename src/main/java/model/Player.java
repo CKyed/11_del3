@@ -44,6 +44,10 @@ public class Player {
         this.account.deposit(amount);
     }
 
+    public void withdraw(int amount){
+        this.account.withdraw(amount);
+    }
+
     public boolean isHasPrisonCard() {
         return hasPrisonCard;
     }

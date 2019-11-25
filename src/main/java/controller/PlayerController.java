@@ -53,6 +53,10 @@ public class PlayerController {
         players[playerId].deposit(amount);
     }
 
+    public void takePointsFromPlayer(int playerid, int amount){
+        players[playerid].withdraw(amount);
+    }
+
     public boolean isPlayerInPrison(int playerID){
         return players[playerID].isInPrison();
     }
@@ -66,26 +70,27 @@ public class PlayerController {
         boolean succes;
         if(amount<=players[playerId].getAccountBalance()){
             succes=true;
-            addPointsToPlayer(playerId, -amount);
+            takePointsFromPlayer(playerId,amount);
         } else {
             succes=false;
-            addPointsToPlayer(playerId,-players[playerId].getAccountBalance());
+            takePointsFromPlayer(playerId,players[playerId].getAccountBalance());
         }
         return succes;
     }
 
     public boolean safeTransferToPlayer(int fromPlayerId, int amount, int toPlayerId){
-        //Returns true if transfer is sucessfull. Otherwise returns false and ends game.
+        //Returns true if transfer is successful. Otherwise returns false and ends game.
 
         boolean succes;
         if(amount<=players[fromPlayerId].getAccountBalance()){
             succes=true;
-            addPointsToPlayer(fromPlayerId, -amount);
-            addPointsToPlayer(toPlayerId, amount);
+            takePointsFromPlayer(fromPlayerId,amount);
+            addPointsToPlayer(toPlayerId,amount);
         } else {
             succes=false;
-            addPointsToPlayer(fromPlayerId,-players[fromPlayerId].getAccountBalance());
-            addPointsToPlayer(toPlayerId,players[fromPlayerId].getAccountBalance());
+            int lastAmount = players[fromPlayerId].getAccountBalance();
+            takePointsFromPlayer(fromPlayerId,lastAmount);
+            addPointsToPlayer(toPlayerId,lastAmount);
         }
         return succes;
     }
