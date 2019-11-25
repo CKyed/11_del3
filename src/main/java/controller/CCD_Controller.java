@@ -46,11 +46,11 @@ public class CCD_Controller {
             "Du løslades uden omkostninger.\nBehold dette kort, indtil du får brug for det",
 
             //Give card to other player 16-19
-            "Giv dette kort til den blå bil, og tag et chancekort mere.\n Blå bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!",
-            "Giv dette kort til den røde  bil, og tag et chancekort mere.\nRød bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
+            "Giv dette kort til den blå bil, og tag et chancekort mere.\n Blå bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, får du et lift til start!",
+            "Giv dette kort til den røde  bil, og tag et chancekort mere.\nRød bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, får du et lift til start!",
             //Only when 3 or more players
-            "Giv dette kort til den grønne bil, og tag et chancekort  mere.\nGrøn bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
+            "Giv dette kort til den grønne bil, og tag et chancekort  mere.\nGrøn bil: På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, får du et lift til start!",
             //Only when 4 or more players
-            "Giv dette kort til den gule bil, og tag et chancekort mere.\nGul bil:  På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller.",
+            "Giv dette kort til den gule bil, og tag et chancekort mere.\nGul bil:  På din næste tur skal du køre frem til et hvilket som helst ledigt felt og købe det. Hvis der ikke er nogen ledige felter, får du et lift til start!",
     };
 }

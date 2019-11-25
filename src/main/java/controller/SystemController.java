@@ -151,7 +151,6 @@ public class SystemController {
                 landedOnChanceCardField(playerId,newFieldId);
                 break;
             case 'j':
-                viewController.showMessage( activePlayerName+ " ryger direkte i fængslet! Bøden er på M1!");
                 landedOnJail(playerId);
                 break;
             case 'v':
@@ -168,6 +167,7 @@ public class SystemController {
 
     public void landedOnJail(int playerId){
         viewController.displayLandedOnNewField(gameController.getPlayerController().getPlayers()[playerId].getName(),"Fængslet");
+        viewController.showMessage( "Bøden når man kommer i fængsel er M1. Bøden betales ved starten af næste tur.!");
         movePlayerCar(playerId,12,true);
         gameController.setPlayerInPrison(playerId,true);
         updatePlayerBalances();
@@ -219,6 +219,8 @@ public class SystemController {
         //Puts the card in the bottom of the deck
         gameController.getCcd_controller().getChanceCardDeck().draw();
 
+        int newFieldId;
+
 
         String selection="";
         switch (ccId){
@@ -232,6 +234,8 @@ public class SystemController {
                 selection = viewController.getUserSelection("Hvor mange felter vil du rykke frem?","1","2","3","4","5");
                 int chosenDieRoll = Integer.parseInt(selection);
                 movePlayerCar(playerId,chosenDieRoll,false);
+                newFieldId = (fieldId+chosenDieRoll)%24;
+                playTurnOnNewField(playerId,newFieldId);
                 break;
             case 3: //Ryk 1 felt frem eller tag et nyt kort
                 selection = viewController.getUserButtonPressed("Hvad vælger du?","Ryk et felt frem.","Tag et chancekort mere.");
@@ -239,6 +243,8 @@ public class SystemController {
                     landedOnChanceCardField(playerId,fieldId);
                 } else if("Ryk et felt frem.".equals(selection)){
                     movePlayerCar(playerId,1,false);
+                    newFieldId = (fieldId+1)%24;
+                    playTurnOnNewField(playerId,newFieldId);
                 }
 
                 break;
@@ -344,6 +350,7 @@ public class SystemController {
 
     public void moveToVacantProperty(int playerId, int oldFieldId){
         ArrayList<Integer> vacantPropertyIds = new ArrayList<Integer>();
+
         for (int i =0; i<24;i++){
             if(gameController.getBoardController().getGameBoard().getFields()[i].getType()=='p'){
                 if (((Property)gameController.getBoardController().getGameBoard().getFields()[i]).getOwnedByPlayerId()==-1){
@@ -358,20 +365,28 @@ public class SystemController {
             vacantProperties[i] =gameController.getBoardController().getGameBoard().getFields()[vacantPropertyIds.get(i)].getName();
         }
 
-        //Asks the player which property he wants to go to
-        String selection = viewController.getUserSelection("Vælg den ejendom, du vil gå til.",vacantProperties);
+        if (vacantPropertyIds.size()==0){ //If there are no vacant properties
+            viewController.showMessage("Der er desværre ingen ledige felter. Du får et gratis lift til start");
+            int simulatedDieRoll= 24-oldFieldId;
+            movePlayerCar(playerId,simulatedDieRoll,false);
+        } else { //If there are vacant properties
 
-        int selectedFieldId=0;
-        for (int i =0;i<vacantProperties.length;i++){
-           if (selection.equals(vacantProperties[i])){
-               selectedFieldId=vacantPropertyIds.get(i);
-           }
+            //Asks the player which property he wants to go to
+            String selection = viewController.getUserSelection("Vælg den ejendom, du vil gå til.",vacantProperties);
+
+            int selectedFieldId=0;
+            for (int i =0;i<vacantProperties.length;i++){
+                if (selection.equals(vacantProperties[i])){
+                    selectedFieldId=vacantPropertyIds.get(i);
+                }
+            }
+
+            //Moves the player to the correct field
+            int simulatedRoll = (24+selectedFieldId-oldFieldId)%24;
+            movePlayerCar(playerId,simulatedRoll,false);
+            landedOnProperty(playerId,selectedFieldId,false);
+
         }
-
-        //Moves the player to the correct field
-        int simulatedRoll = (24+selectedFieldId-oldFieldId)%24;
-        movePlayerCar(playerId,simulatedRoll,false);
-        landedOnProperty(playerId,selectedFieldId,false);
 
 
     }
