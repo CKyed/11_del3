@@ -17,7 +17,6 @@ public class ChanceCardDeck {
     ChanceCard cardB = chanceCards[b];
     chanceCards[a] = cardB;
     chanceCards[b] = cardA;
-
     }
 
     public void shuffle(){
@@ -25,7 +24,6 @@ public class ChanceCardDeck {
         int a= (int) (Math.random()*chanceCards.length);
         int b= (int) (Math.random()*chanceCards.length);
         swap(a,b);
-
         }
     }
 
@@ -35,7 +33,6 @@ public class ChanceCardDeck {
         chanceCards[i] =chanceCards [i+1];
         }
         chanceCards[chanceCards.length-1]=upper;
-
         return upper;
         }
 
@@ -43,10 +40,3 @@ public class ChanceCardDeck {
         return chanceCards;
     }
 }
-
-
-
-
-
-
-

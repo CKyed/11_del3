@@ -68,4 +68,3 @@ public class Player {
         this.nextTurnVacantField = nextTurnVacantField;
     }
 }
-

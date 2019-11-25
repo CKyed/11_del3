@@ -1,7 +1,5 @@
 package model.fields;
 
-import model.fields.Field;
-
 public class Property extends Field {
     private int price;
     private int ownedByPlayerId=-1;
@@ -23,6 +21,4 @@ public class Property extends Field {
     public int getPrice() {
         return price;
     }
-
-
 }

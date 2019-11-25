@@ -1,19 +1,13 @@
 package controller;
 import model.*;
-import model.fields.ChanceCardField;
 import model.fields.Property;
-
-import java.util.ArrayList;
 
 public class GameController {
     private DiceCup diceCup;
     private boolean gameOver = false;
     private int startBonus=2;
     private BoardController boardController;
-
     private CCD_Controller ccd_controller;
-
-
     private PlayerController playerController;
 
     public GameController() {
@@ -74,8 +68,6 @@ public class GameController {
         diceCup.rollDice();
         int roll = diceCup.getDieSum();
         return roll;
-
-
     }
 
     public int getNumberOfPlayers(){
@@ -84,7 +76,6 @@ public class GameController {
 
     public boolean isPlayerInPrison(int playerID){
         return playerController.isPlayerInPrison(playerID);
-
     }
 
     public void setPlayerInPrison(int playerID,boolean inPrison){
@@ -109,11 +100,8 @@ public class GameController {
                     msg+= activePlayerName + " har ikke råd til at betale bøden.";
                     gameOver=true;
                 }
-
-
             }
            setPlayerInPrison(activePlayerId,false);
-
         }
         return msg;
     }
@@ -122,7 +110,6 @@ public class GameController {
         //Input: playerId, fieldId and "free"-boolean.
         //free is only true, if the player lands on the property with a special chancecard and get it for free
         //Returns a message that displays what happens, and updates the status of balances and so on automatically
-
 
         //Checks who, if anyone, owns the field
         int propertyOwnerId = boardController.getPropertiesOwnedByIds()[fieldId];
@@ -136,7 +123,6 @@ public class GameController {
         String activePlayerName = playerController.getPlayers()[playerId].getName();
         String msg="";
         boolean canAfford;
-
 
         if (playerId==propertyOwnerId){ //If the player owns it himself
            msg+=activePlayerName+" ejer selv " + propertyName +".";
@@ -167,9 +153,7 @@ public class GameController {
                 msg+= activePlayerName +" skal betale M" + propertyPrice + " til banken, men har ikke råd.\n";
                 gameOver=true;
             }
-
         }
-
         return msg;
     }
 
@@ -193,17 +177,7 @@ public class GameController {
                 winnerMessage+="og " + playerController.getPlayers()[i].getName();
             }
         }
-
         winnerMessage+= " har vundet spillet med en endelig score på M" + currentHighest + ".";
-
-
-
         return winnerMessage;
     }
-
-
-
-
-
 }
-

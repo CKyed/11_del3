@@ -1,11 +1,9 @@
 package model;
-
 import model.fields.*;
 
 public class GameBoard {
     protected Field[] fields;
     private Property[] properties;
-
 
     public GameBoard(String[] names, char[] types, int[] prices, String[] colors){
         int numberOfFields = names.length;
@@ -32,6 +30,4 @@ public class GameBoard {
     public Field[] getFields() {
         return this.fields;
     }
-
-
 }

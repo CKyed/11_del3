@@ -1,7 +1,5 @@
 package controller;
-
 import model.fields.Property;
-
 import java.util.ArrayList;
 
 public class SystemController {
@@ -44,9 +42,7 @@ public class SystemController {
             if (gameController.getPlayerController().getPlayerFieldId(i)==oldFieldId){
                 playersOnOldFieldId.add(i);
             }
-
         }
-
         //Updates the players current fieldID
         int newFieldId = gameController.movePlayerCar(dieRoll,playerId);
 
@@ -85,8 +81,6 @@ public class SystemController {
                 Thread.currentThread().interrupt();
             }
         }
-
-
     }
 
     public void playGame(){
@@ -114,11 +108,9 @@ public class SystemController {
                     viewController.showMessage(prisonMessage);
                 }
 
-
                 //rolls the die
                 roll = gameController.getRoll();
                 viewController.showDie(roll);
-
 
                 //Updates the position of the active player
                 movePlayerCar(activePlayerId, roll, false);
@@ -127,18 +119,14 @@ public class SystemController {
 
                 //Checks if game is over
                 checkIfGameOver();
-
             }
             //Gives the turn to the next player
             activePlayerId++;
             activePlayerId = activePlayerId % gameController.getNumberOfPlayers();
         }
-
         viewController.showMessage("Tak for spillet! Luk vinduet ved at trykke på X i hjørnet, eller tryk OK for at spille igen.");
         viewController.closeGui();
-
     }
-
 
     public void playTurnOnNewField(int playerId, int newFieldId){
         //Gets name of active player
@@ -181,7 +169,6 @@ public class SystemController {
         }
     }
 
-
     public void landedOnProperty(int playerId, int fieldId,boolean free){
         //Input playerId, fieldId and free-boolean.
         //if free==true, the player will get the property for free. Otherwise, the balances and ownership will be
@@ -200,7 +187,6 @@ public class SystemController {
         viewController.showMessage(statusMessage);
         updatePlayerBalances();
         checkIfGameOver();
-
     }
 
     public void landedOnChanceCardField(int playerId,int fieldId){
@@ -212,7 +198,6 @@ public class SystemController {
         //Displays message
         viewController.showMessage(activePlayerName + " er landet på et chancekortfelt! Læs kortet i midten af brættet.");
 
-
         //Gets the id of the chanceCard
         int ccId = gameController.getCcd_controller().getChanceCardDeck().getChanceCards()[0].getId();
 
@@ -220,7 +205,6 @@ public class SystemController {
         gameController.getCcd_controller().getChanceCardDeck().draw();
 
         int newFieldId;
-
 
         String selection="";
         switch (ccId){
@@ -309,11 +293,8 @@ public class SystemController {
                 gameController.getPlayerController().getPlayers()[3].setNextTurnVacantField(true);
                 landedOnChanceCardField(playerId,fieldId);
                 break;
-
         }
         updatePlayerBalances();
-
-
     }
 
     public void freePropertyChanceCard(int playerId, int oldFieldId,int...fieldIdsToChooseFrom){
@@ -332,13 +313,11 @@ public class SystemController {
         } else { //else if there are multiple fields to choose from
             selection = viewController.getUserSelection("Hvilket felt vælger du?",fieldNames);
         }
-
         for (int i=0;i<fieldNames.length;i++){
             if (selection.equals(fieldNames[i])){
                 chosenFieldId=fieldIdsToChooseFrom[i];
             }
         }
-
         //Moves to the chosen field
         int simulatedRoll= chosenFieldId-oldFieldId;
         if(simulatedRoll<0){
@@ -357,7 +336,6 @@ public class SystemController {
                     vacantPropertyIds.add(i);
                 }
             }
-
         }
 
         String[] vacantProperties = new String[vacantPropertyIds.size()];
@@ -385,10 +363,7 @@ public class SystemController {
             int simulatedRoll = (24+selectedFieldId-oldFieldId)%24;
             movePlayerCar(playerId,simulatedRoll,false);
             landedOnProperty(playerId,selectedFieldId,false);
-
         }
-
-
     }
 
     public void checkIfGameOver(){
@@ -398,12 +373,4 @@ public class SystemController {
             gameOver=true;
         }
     }
-
-
-
-
-
-
-
-
 }

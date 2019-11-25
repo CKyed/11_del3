@@ -1,12 +1,8 @@
 package controller;
 import gui_fields.*;
 import gui_main.GUI;
-
-import javax.swing.text.View;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ViewController {
     private GUI gui;
@@ -17,12 +13,10 @@ public class ViewController {
             new GUI_Car(Color.GREEN, Color.GREEN, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL),
             new GUI_Car(Color.YELLOW, Color.YELLOW, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL)};
 
-
     //This is the logic for the ViewController, that translates the models colors to awt-colors
     private Color[] colors = {Color.WHITE,Color.getHSBColor((float)0.1,(float)0.75,(float)0.60),Color.CYAN,Color.MAGENTA,Color.ORANGE,Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE};
     private String[] colorNames= {"WHITE","BROWN","CYAN","MAGENTA",
             "ORANGE","RED","YELLOW","GREEN","BLUE"};
-
 
     public ViewController(String[] names, String[] colorNames, int[] prices, char[] types){
         boardSetup(names,colorNames,prices,types);
@@ -94,11 +88,8 @@ public class ViewController {
             else if(input == null ){
                 gui.showMessage("Skriv venligst et navn!");
             }
-
         }
-
         playerNames = sortWithYoungestFirst(playerNames);
-
         return playerNames;
     }
 
@@ -119,7 +110,6 @@ public class ViewController {
                 remainingNames.add(playerNames[i]);
             }
         }
-
         gui.showMessage("Turene går på skift i retning med uret, dvs. mod venstre.");
 
         //Asks who sits to the left of the last added player
@@ -133,7 +123,6 @@ public class ViewController {
                 remainingNames.remove(newNamesList[i]);
             }
         }
-
         return newNamesList;
     }
 
@@ -149,7 +138,6 @@ public class ViewController {
 
     public void setPlayerOnField(int fieldId, int playerId){
         this.guiFields[fieldId].setCar(guiPlayers[playerId],true);
-
     }
 
     public void removeAllPlayersFromField(int fieldId){
@@ -171,6 +159,7 @@ public class ViewController {
     public void showMessage(String msg){
         gui.showMessage(msg);
     }
+
     public static boolean checkPlayerexsistance(String[] playerName,String typedName){
         //boolean playerexsistance = Arrays.stream(playerName).anyMatch(typedName::equals);
         //return playerexsistance;
@@ -179,9 +168,7 @@ public class ViewController {
             if(playerName[i] != null && playerName[i].equals(typedName))
                 return true;
         }
-
         return false;
-
     }
 
     public void displayChanceCard(String msg){
@@ -203,6 +190,4 @@ public class ViewController {
     public void closeGui(){
         gui.close();
     }
-
-
 }

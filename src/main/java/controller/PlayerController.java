@@ -1,11 +1,9 @@
 package controller;
-
 import model.*;
 
 public class PlayerController {
     private Player[] players;
     private int numberOfPlayers;
-
 
     public PlayerController(String[] playerNames){
         this.numberOfPlayers = playerNames.length;
@@ -22,13 +20,10 @@ public class PlayerController {
                 startPoint=16;
                 break;
         }
-
         for (int i=0;i<numberOfPlayers;i++){
             players[i] = new Player(playerNames[i],startPoint,i);
         }
-
     }
-
 
     public int[] getPlayerBalances(){
         int[] playerBalances = new int[numberOfPlayers];
@@ -60,7 +55,6 @@ public class PlayerController {
 
     public boolean isPlayerInPrison(int playerID){
         return players[playerID].isInPrison();
-
     }
 
     public void setPlayerInPrison(int playerID,boolean inPrison){
@@ -95,6 +89,4 @@ public class PlayerController {
         }
         return succes;
     }
-
-
 }

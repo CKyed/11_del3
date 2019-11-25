@@ -1,10 +1,8 @@
 package controller;
-
 import model.ChanceCardDeck;
 
 public class CCD_Controller {
     private ChanceCardDeck chanceCardDeck;
-
 
     public CCD_Controller(int numberOfPlayers){
         this.chanceCardDeck = new ChanceCardDeck(chanceCardTexts,numberOfPlayers);
@@ -14,10 +12,6 @@ public class CCD_Controller {
     public ChanceCardDeck getChanceCardDeck(){
         return this.chanceCardDeck;
     }
-
-
-
-
 
     private String[] chanceCardTexts = new String[]{
             //Move to certain destination 0-3
@@ -35,7 +29,6 @@ public class CCD_Controller {
             "GRATIS FELT\nRyk frem til et pink eller mørkeblåt felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du betale leje til ejeren.",
             "GRATIS FELT\nRyk frem til et lyseblåt eller rødt felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du betale leje til ejeren.",
             "GRATIS FELT\nRyk frem til et brunt eller gult felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du betale leje til ejeren.",
-
 
             //Money transfer 12-14
             "Du har spist for meget slik.\nBetal M2 til banken.",

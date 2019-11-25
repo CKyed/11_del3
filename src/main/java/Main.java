@@ -8,12 +8,5 @@ public class Main {
             systemController = new SystemController();
             systemController.playGame();
         }
-
-
-
-
-
-
-
     }
 }

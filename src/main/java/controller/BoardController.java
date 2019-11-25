@@ -15,7 +15,6 @@ public class BoardController {
     private String[] colors = {"WHITE","BROWN","BROWN","WHITE","CYAN","CYAN","WHITE","MAGENTA","MAGENTA","WHITE",
             "ORANGE","ORANGE","WHITE","RED","RED","WHITE","YELLOW","YELLOW","WHITE","GREEN","GREEN","WHITE","BLUE","BLUE"};
 
-
     public BoardController(){
         this.gameBoard=new GameBoard(this.names,this.types,this.prices,this.colors);
     }
@@ -55,5 +54,4 @@ public class BoardController {
         }
         return list;
     }
-
 }
