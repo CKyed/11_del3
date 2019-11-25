@@ -31,7 +31,7 @@ public class CCD_Controller {
             "GRATIS FELT\nRyk frem til et orange eller grønt felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du BETALE leje til ejeren.",
             "GRATIS FELT\nRyk frem til et lyseblåt felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du BETALE leje til ejeren.",
             "GRATIS FELT\nRyk frem til Skaterparken for at lave det perfekte grind!\nHvis ingen ejer den, får du den GRATIS! Ellers skal du BETALE leje til ejeren.",
-            "GRATIS FELT\nRyk frem til et rødt felt.\nHvis det er ledigt, får du det GRATIS. ELlers skal du betale leje til ejeren.",
+            "GRATIS FELT\nRyk frem til et rødt felt.\nHvis det er ledigt, får du det GRATIS. Ellers skal du betale leje til ejeren.",
             "GRATIS FELT\nRyk frem til et pink eller mørkeblåt felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du betale leje til ejeren.",
             "GRATIS FELT\nRyk frem til et lyseblåt eller rødt felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du betale leje til ejeren.",
             "GRATIS FELT\nRyk frem til et brunt eller gult felt.\nHvis det er ledigt, får du det GRATIS! Ellers skal du betale leje til ejeren.",

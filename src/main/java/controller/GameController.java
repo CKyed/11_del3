@@ -138,10 +138,10 @@ public class GameController {
         boolean canAfford;
 
 
-        if (playerId==propertyOwnerId){
+        if (playerId==propertyOwnerId){ //If the player owns it himself
            msg+=activePlayerName+" ejer selv " + propertyName +".";
         }
-        else if(propertyOwnerId>=0){ //If it is owned
+        else if(propertyOwnerId>=0){ //If it is owned by someone else
             msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
             canAfford = playerController.safeTransferToPlayer(playerId,propertyPrice,propertyOwnerId);
             if (canAfford){
