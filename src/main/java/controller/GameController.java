@@ -137,7 +137,7 @@ public class GameController {
                 gameOver=true;
             }
 
-        } else if (free){ //If it is owned and the player gets it for free
+        } else if (free){ //If it is not owned and the player gets it for free
             msg+= propertyOwnerName + " ejer " + propertyName + ".\n";
             msg+= activePlayerName +" får " + propertyName + " gratis på grund af sit chancekort!";
             ((Property)boardController.getGameBoard().getFields()[fieldId]).setOwnedByPlayerId(playerId);
